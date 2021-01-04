@@ -1,0 +1,39 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/order/order",
+    "pages/mine/mine"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationStyle": "custom"
+  },
+  "tabBar": {
+    "selectedColor": "#FB766A",
+    "color": "#B3C0C7",
+    "borderStyle": "black",
+    "backgroundColor": "#F7F7F7",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "iconPath": "static/tabbar/home.png",
+        "selectedIconPath": "static/tabbar/homeActive.png",
+        "text": "外卖"
+      },
+      {
+        "pagePath": "pages/order/order",
+        "iconPath": "static/tabbar/order.png",
+        "selectedIconPath": "static/tabbar/orderActive.png",
+        "text": "订单"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "iconPath": "static/tabbar/mine.png",
+        "selectedIconPath": "static/tabbar/mineActive.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "usingComponents": {},
+  "sitemapLocation": "sitemap96.json"
+}
