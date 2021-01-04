@@ -1,0 +1,32 @@
+.headBox.data-v-92bb8f34 {
+  padding-top: 100rpx;
+  width: 100%;
+  height: 180rpx;
+  background-color: #FB766A;
+  color: white;
+}
+.headBox .locationBox.data-v-92bb8f34 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  padding: 0 20rpx;
+}
+.headBox .locationBox .Icon.data-v-92bb8f34 {
+  width: 40rpx;
+  height: 40rpx;
+}
+.headBox .locationBox .Icon.data-v-92bb8f34:nth-child(2) {
+  margin-left: 40rpx;
+}
+.contentBox.data-v-92bb8f34 {
+  background-color: white;
+  width: 100%;
+  height: 1000rpx;
+  margin-top: -100rpx;
+  -webkit-border-radius: 34rpx;
+          border-radius: 34rpx;
+}
+

@@ -12,6 +12,7 @@
 	}
 </script>
 
-<style>
+<style lang="less">
+	@import url("./static/common/uni.less");
 	/*每个页面公共css */
 </style>

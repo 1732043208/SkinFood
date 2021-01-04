@@ -10,7 +10,8 @@
 
 	],
 	"globalStyle":{
-		"navigationStyle":"custom"
+		"navigationStyle":"custom",
+		"themeColor":"#FB766A"
 	},
 
 	"tabBar": {

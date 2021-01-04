@@ -6,7 +6,8 @@
   ],
   "subPackages": [],
   "window": {
-    "navigationStyle": "custom"
+    "navigationStyle": "custom",
+    "themeColor": "#FB766A"
   },
   "tabBar": {
     "selectedColor": "#FB766A",
@@ -35,5 +36,5 @@
     ]
   },
   "usingComponents": {},
-  "sitemapLocation": "sitemap96.json"
+  "sitemapLocation": "sitemap5.json"
 }
