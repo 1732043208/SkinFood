@@ -181,10 +181,63 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
-    return {};
+    return {
+      navImgList: [{
+        id: 1,
+        title: '美食',
+        src: '../../static/home/navBar/navImg1.png' },
+      {
+        id: 2,
+        title: '超市便利',
+        src: '../../static/home/navBar/navImg2.png' },
+      {
+        id: 3,
+        title: '水果',
+        src: '../../static/home/navBar/navImg3.png' },
+      {
+        id: 4,
+        title: '送药上门',
+        src: '../../static/home/navBar/navImg4.png' },
+      {
+        id: 5,
+        title: '甜品饮品',
+        src: '../../static/home/navBar/navImg5.png' }],
+
+      navIconList: [{
+        id: 1,
+        title: '分享赚钱',
+        src: '../../static/home/navBar/navIcon1.png' },
+      {
+        id: 2,
+        title: '买菜',
+        src: '../../static/home/navBar/navIcon2.png' },
+      {
+        id: 3,
+        title: '配送减免',
+        src: '../../static/home/navBar/navIcon3.png' },
+      {
+        id: 4,
+        title: '订了么',
+        src: '../../static/home/navBar/navIcon4.png' },
+      {
+        id: 5,
+        title: '地方美食',
+        src: '../../static/home/navBar/navIcon5.png' }] };
 
 
   },

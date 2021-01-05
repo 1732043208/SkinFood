@@ -9,17 +9,29 @@
 					<text>|</text>
 				</view>
 				<view>
-					<image src="../../static/home/location.png" class="Icon"></image>
+					<image src="../../static/home/headBox/location.png" class="SmallIcon"></image>
 					金沙路越秀滨海新城
 				</view>
 			</view>
 			<view class="searchBox">
 				<input type="text" placeholder="糕大上蛋糕店 100减3" class="searchInput"></input>
-				<image src="../../static/home/headBox/search.png" class="Icon"></image>
+				<image src="../../static/home/headBox/search.png" class="SmallIcon"></image>
 			</view>
 		</view>
 		<view class="contentBox">
-
+			<view class="navImg">
+				<view class="navImgBox" v-for="item in navImgList" :key="item.id">
+					<image :src="item.src" class="BigIcon"></image>
+					<view>{{item.title}}</view>
+				</view>
+			</view>
+			<view class="navIcon">
+				<view class="navIconBox" v-for="item in navIconList" :key="item.id">
+					<image :src="item.src" class="MiddleIcon"></image>
+					<view>{{item.title}}</view>
+				</view>
+			</view>
+			<image src="../../static/home/navBar/advertising.png" class="advertising"></image>
 		</view>
 		<!-- #endif -->
 		<!-- 除了微信小程序之外运行的代码 -->
@@ -27,12 +39,12 @@
 		<view class="headBox">
 			<view class="locationBox">
 				<view>
-					<image src="../../static/home/headBox/location.png" class="Icon"></image>
+					<image src="../../static/home/headBox/location.png" class="SmallIcon"></image>
 					<text>金沙路越秀滨海新城</text>
 				</view>
 				<view>
-					<image src="../../static/home/headBox/ScanCode.png" class="Icon"></image>
-					<image src="../../static/home/headBox/message.png" class="Icon"></image>
+					<image src="../../static/home/headBox/ScanCode.png" class="SmallIcon"></image>
+					<image src="../../static/home/headBox/message.png" class="SmallIcon"></image>
 				</view>
 			</view>
 		</view>
@@ -48,7 +60,48 @@
 	export default {
 		data() {
 			return {
-
+				navImgList: [{
+					id: 1,
+					title: '美食',
+					src: '../../static/home/navBar/navImg1.png'
+				}, {
+					id: 2,
+					title: '超市便利',
+					src: '../../static/home/navBar/navImg2.png'
+				}, {
+					id: 3,
+					title: '水果',
+					src: '../../static/home/navBar/navImg3.png'
+				}, {
+					id: 4,
+					title: '送药上门',
+					src: '../../static/home/navBar/navImg4.png'
+				}, {
+					id: 5,
+					title: '甜品饮品',
+					src: '../../static/home/navBar/navImg5.png'
+				}],
+				navIconList: [{
+					id: 1,
+					title: '分享赚钱',
+					src: '../../static/home/navBar/navIcon1.png'
+				}, {
+					id: 2,
+					title: '买菜',
+					src: '../../static/home/navBar/navIcon2.png'
+				}, {
+					id: 3,
+					title: '配送减免',
+					src: '../../static/home/navBar/navIcon3.png'
+				}, {
+					id: 4,
+					title: '订了么',
+					src: '../../static/home/navBar/navIcon4.png'
+				}, {
+					id: 5,
+					title: '地方美食',
+					src: '../../static/home/navBar/navIcon5.png'
+				}]
 			}
 		},
 		methods: {
@@ -96,7 +149,7 @@
 		border-radius: 70rpx;
 		line-height: 70rpx;
 
-		.Icon {
+		.SmallIcon {
 			position: absolute;
 			top: 16rpx;
 			margin-left: 20rpx;
@@ -111,11 +164,39 @@
 	}
 
 	.contentBox {
-		background-color: white;
+		background-image: linear-gradient(#ffffff, #f5f5f5);
 		width: 100%;
-		height: 1000rpx;
 		margin-top: -100rpx;
 		border-radius: 34rpx;
+		font-size: 24rpx;
+
+		.navImg {
+			display: flex;
+
+			.navImgBox {
+				flex: 1;
+				text-align: center;
+				margin-top: 30rpx;
+
+				}
+		}
+
+		.navIcon {
+			margin-top: 24rpx;
+			display: flex;
+
+			.navIconBox {
+				flex: 1;
+				text-align: center;
+			}
+		}
+
+		.advertising {
+			width: 94%;
+			height: 180rpx;
+			margin-top: 20rpx;
+			margin-left: 3%;
+		}
 	}
 
 	/* #endif */
@@ -134,9 +215,7 @@
 			justify-content: space-between;
 			padding: 0 20rpx;
 
-
-
-			.Icon:nth-child(2) {
+			.SmallIcon:nth-child(2) {
 				margin-left: 40rpx
 			}
 

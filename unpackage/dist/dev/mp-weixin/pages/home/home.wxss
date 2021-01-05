@@ -1,7 +1,15 @@
-.Icon.data-v-92bb8f34 {
+.SmallIcon.data-v-92bb8f34 {
   width: 38rpx;
   height: 38rpx;
   margin-bottom: -10rpx;
+}
+.MiddleIcon.data-v-92bb8f34 {
+  width: 56rpx;
+  height: 56rpx;
+}
+.BigIcon.data-v-92bb8f34 {
+  width: 86rpx;
+  height: 86rpx;
 }
 .headBox.data-v-92bb8f34 {
   padding-top: 60rpx;
@@ -36,7 +44,7 @@
           border-radius: 70rpx;
   line-height: 70rpx;
 }
-.searchBox .Icon.data-v-92bb8f34 {
+.searchBox .SmallIcon.data-v-92bb8f34 {
   position: absolute;
   top: 16rpx;
   margin-left: 20rpx;
@@ -48,11 +56,43 @@
   font-size: 26rpx;
 }
 .contentBox.data-v-92bb8f34 {
-  background-color: white;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#f5f5f5));
+  background-image: -webkit-linear-gradient(#ffffff, #f5f5f5);
+  background-image: linear-gradient(#ffffff, #f5f5f5);
   width: 100%;
-  height: 1000rpx;
   margin-top: -100rpx;
   -webkit-border-radius: 34rpx;
           border-radius: 34rpx;
+  font-size: 24rpx;
+}
+.contentBox .navImg.data-v-92bb8f34 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+.contentBox .navImg .navImgBox.data-v-92bb8f34 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+  text-align: center;
+  margin-top: 30rpx;
+}
+.contentBox .navIcon.data-v-92bb8f34 {
+  margin-top: 24rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+.contentBox .navIcon .navIconBox.data-v-92bb8f34 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+  text-align: center;
+}
+.contentBox .advertising.data-v-92bb8f34 {
+  width: 94%;
+  height: 180rpx;
+  margin-top: 20rpx;
+  margin-left: 3%;
 }
 
