@@ -1,7 +1,12 @@
+.Icon.data-v-92bb8f34 {
+  width: 38rpx;
+  height: 38rpx;
+  margin-bottom: -10rpx;
+}
 .headBox.data-v-92bb8f34 {
-  padding-top: 100rpx;
+  padding-top: 60rpx;
   width: 100%;
-  height: 180rpx;
+  height: 260rpx;
   background-color: #FB766A;
   color: white;
 }
@@ -9,17 +14,38 @@
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-          justify-content: space-between;
   padding: 0 20rpx;
+  height: 50rpx;
+  line-height: 50rpx;
 }
-.headBox .locationBox .Icon.data-v-92bb8f34 {
-  width: 40rpx;
-  height: 40rpx;
+.headBox .locationBox .title.data-v-92bb8f34 {
+  margin-right: 14rpx;
 }
-.headBox .locationBox .Icon.data-v-92bb8f34:nth-child(2) {
-  margin-left: 40rpx;
+.headBox .locationBox .title > text.data-v-92bb8f34:first-child {
+  margin-right: 14rpx;
+  font-weight: 700;
+  font-size: 34rpx;
+}
+.searchBox.data-v-92bb8f34 {
+  position: relative;
+  background-color: white;
+  width: 94%;
+  height: 70rpx;
+  margin: 20rpx auto;
+  -webkit-border-radius: 70rpx;
+          border-radius: 70rpx;
+  line-height: 70rpx;
+}
+.searchBox .Icon.data-v-92bb8f34 {
+  position: absolute;
+  top: 16rpx;
+  margin-left: 20rpx;
+}
+.searchBox .searchInput.data-v-92bb8f34 {
+  color: black;
+  height: 100%;
+  padding-left: 80rpx;
+  font-size: 26rpx;
 }
 .contentBox.data-v-92bb8f34 {
   background-color: white;

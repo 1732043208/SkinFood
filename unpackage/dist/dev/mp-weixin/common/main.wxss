@@ -1,2 +1,7 @@
+.Icon {
+  width: 38rpx;
+  height: 38rpx;
+  margin-bottom: -10rpx;
+}
 /*每个页面公共css */
 
