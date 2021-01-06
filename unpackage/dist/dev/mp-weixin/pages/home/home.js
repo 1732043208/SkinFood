@@ -135,7 +135,18 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -381,13 +392,60 @@ var _default =
         ShippingPrice: '0',
         oldShippingPrice: '3',
         isDetection: false,
-        discountList: ['25减8', '38减12', '80减23', '100减26'] }] };
+        discountList: ['25减8', '38减12', '80减23', '100减26'] }],
 
+
+
+      //页面滚动的距离
+      rect: '',
+      //组件距离顶部的距离
+      menutop: '',
+      //"附近推荐"是否吸顶
+      isfixed: false,
+      //顶部搜索框状态
+      isChange: false };
 
 
 
   },
-  methods: {} };exports.default = _default;
+  onLoad: function onLoad() {var _this = this;
+    // 监听筛选组件距离顶部的距离
+    var query = uni.createSelectorQuery();
+    query.select('.suggestBox').boundingClientRect(function (res) {
+      // console.log(res.height)
+    });
+    query.exec(function (res) {
+      _this.menutop = res[0].top;
+    });
+
+  },
+  methods: {},
+  computed: {
+    // 监听顶部搜索框状态变化
+    isChangeFunc: function isChangeFunc() {
+      if (this.rect >= 10) {
+        this.isChange = true;
+      } else {
+        this.isChange = false;
+      }
+    },
+    //监听“附近推荐”是否吸顶
+    isFixedFunc: function isFixedFunc() {
+      // 75是吸顶盒子的高度
+      if (this.rect > this.menutop - 75) {
+        this.isfixed = true;
+      } else {
+        this.isfixed = false;
+      }
+    } },
+
+  onPageScroll: function onPageScroll(e) {
+    // console.log(e.scrollTop)
+    //获取当前高度与顶部的距离
+    this.rect = e.scrollTop;
+    console.log(this.rect);
+  } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 /* 17 */

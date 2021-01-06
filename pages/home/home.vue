@@ -2,7 +2,8 @@
 	<view>
 		<!-- 微信小程序运行代码 -->
 		<!-- #ifdef MP-WEIXIN -->
-		<view class="headBox">
+		<view class="headBox" v-if="!isChange">
+
 			<view class="locationBox">
 				<view class="title">
 					<text>皮了么</text>
@@ -16,6 +17,14 @@
 			<view class="searchBox">
 				<input type="text" placeholder="糕大上蛋糕店 100减3" class="searchInput"></input>
 				<image src="../../static/home/headBox/search.png" class="SmallIcon"></image>
+			</view>
+		</view>
+		<view class="headBoxSecond" v-if="isChange">
+			<view class="headBoxFixed">
+				<view class="searchBoxSecond">
+					<input type="text" placeholder="糕大上蛋糕店 100减3" class="searchInputSecond"></input>
+					<image src="../../static/home/headBox/search.png" class="SmallIcon"></image>
+				</view>
 			</view>
 		</view>
 		<view class="contentBox">
@@ -34,13 +43,15 @@
 			<image src="../../static/home/navBar/advertising.png" class="advertising"></image>
 		</view>
 		<view class="recommendBox">
-			<h1 class="title">附近推荐</h1>
-			<view class="recommendTitles">
-				<block v-for="item in recommendTitles">
-					<view class="recommendItem">{{item}}</view>
-				</block>
+			<view class="suggestBox" :class="{'is_fixed':isfixed}">
+				<h1 class="title">附近推荐</h1>
+				<view class="recommendTitles">
+					<block v-for="item in recommendTitles">
+						<view class="recommendItem">{{item}}</view>
+					</block>
+				</view>
 			</view>
-			<view class="recommendDetails">
+			<view class="recommendDetails"  :class="{'is_fixedSecond':isfixed}">
 				<view v-for="item in recommendDetailsList">
 					<view class="shopDetails">
 						<view class="left">
@@ -247,11 +258,55 @@
 						discountList: ['25减8', '38减12', '80减23', '100减26']
 					},
 
-				]
+				],
+				//页面滚动的距离
+				rect: '',
+				//组件距离顶部的距离
+				menutop: '',
+				//"附近推荐"是否吸顶
+				isfixed: false,
+				//顶部搜索框状态
+				isChange: false
+
+
 			}
 		},
-		methods: {
+		onLoad() {
+			// 监听筛选组件距离顶部的距离
+			const query = uni.createSelectorQuery()
+			query.select('.suggestBox').boundingClientRect((res) => {
+				// console.log(res.height)
+			})
+			query.exec((res) => {
+				this.menutop = res[0].top;
+			})
 
+		},
+		methods: {},
+		computed: {
+			// 监听顶部搜索框状态变化
+			isChangeFunc() {
+				if (this.rect >= 10) {
+					this.isChange = true
+				} else {
+					this.isChange = false
+				}
+			},
+			//监听“附近推荐”是否吸顶
+			isFixedFunc() {
+				// 75是吸顶盒子的高度
+				if (this.rect > (this.menutop - 75)) {
+					this.isfixed = true
+				} else {
+					this.isfixed = false
+				}
+			}
+		},
+		onPageScroll(e) {
+			// console.log(e.scrollTop)
+			//获取当前高度与顶部的距离
+			this.rect = e.scrollTop;
+			console.log(this.rect)
 		}
 	}
 </script>
@@ -261,6 +316,17 @@
 
 	// 微信小程序执行的代码
 	/* #ifdef MP-WEIXIN */
+	.is_fixed {
+		position: fixed;
+		left: 0;
+		top: 146rpx;
+		right: 0;
+	}
+
+	.is_fixedSecond {
+		margin-top: 146rpx;
+	}
+
 	.headBox {
 		padding-top: 60rpx;
 		width: 100%;
@@ -283,6 +349,47 @@
 				font-weight: 700;
 				font-size: 34rpx;
 			}
+		}
+	}
+
+	.headBoxSecond {
+		padding-top: 60rpx;
+		width: 100%;
+		height: 260rpx;
+		background-color: @themeColor;
+
+		.headBoxFixed {
+			padding-top: 56rpx;
+			width: 100%;
+			height: 90rpx;
+			background-color: @themeColor;
+			position: fixed;
+			top: 0rpx;
+
+
+			.searchBoxSecond {
+				margin-left: 20rpx;
+				background-color: white;
+				width: 66%;
+				height: 60rpx;
+				border-radius: 60rpx;
+				line-height: 60rpx;
+position: relative;
+				.SmallIcon {
+					position: absolute;
+					top: 50%;
+					transform: translateY(-50%);
+					margin-left: 20rpx;
+				}
+
+				.searchInputSecond {
+					color: black;
+					height: 100%;
+					padding-left: 80rpx;
+					font-size: 26rpx;
+				}
+			}
+
 		}
 	}
 
@@ -310,7 +417,7 @@
 	}
 
 	.contentBox {
-		background-image: linear-gradient(#ffffff, #f5f5f5);
+		background-image: linear-gradient(#ffffff, #ffffff, #f5f5f5);
 		width: 100%;
 		padding-bottom: 60rpx;
 		margin-top: -100rpx;
@@ -352,26 +459,32 @@
 		background-color: white;
 		border-radius: 30rpx;
 
-		.title {
-			padding-top: 20rpx;
-			margin-left: 24rpx;
-			margin-bottom: 8rpx;
-			font-weight: 700;
-		}
+		.suggestBox {
+			background-color: white;
 
-		.recommendTitles {
-			display: flex;
-			text-align: center;
-			font-size: 24rpx;
+			.title {
+				padding-top: 20rpx;
+				margin-left: 24rpx;
+				margin-bottom: 8rpx;
+				font-weight: 700;
+			}
 
-			.recommendItem {
-				flex: 1;
-				border-radius: 18rpx;
-				margin: 10rpx 16rpx;
-				padding: 14rpx 10rpx;
-				background-color: #F3F3F3;
+			.recommendTitles {
+				display: flex;
+				text-align: center;
+				font-size: 24rpx;
+				margin-bottom: 10rpx;
+
+				.recommendItem {
+					flex: 1;
+					border-radius: 18rpx;
+					margin: 10rpx 16rpx;
+					padding: 14rpx 10rpx;
+					background-color: #F3F3F3;
+				}
 			}
 		}
+
 
 		.shopDetails {
 			display: flex;

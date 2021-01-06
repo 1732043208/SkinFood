@@ -11,6 +11,15 @@
   width: 86rpx;
   height: 86rpx;
 }
+.is_fixed.data-v-92bb8f34 {
+  position: fixed;
+  left: 0;
+  top: 146rpx;
+  right: 0;
+}
+.is_fixedSecond.data-v-92bb8f34 {
+  margin-top: 146rpx;
+}
 .headBox.data-v-92bb8f34 {
   padding-top: 60rpx;
   width: 100%;
@@ -34,6 +43,43 @@
   font-weight: 700;
   font-size: 34rpx;
 }
+.headBoxSecond.data-v-92bb8f34 {
+  padding-top: 60rpx;
+  width: 100%;
+  height: 260rpx;
+  background-color: #FB766A;
+}
+.headBoxSecond .headBoxFixed.data-v-92bb8f34 {
+  padding-top: 56rpx;
+  width: 100%;
+  height: 90rpx;
+  background-color: #FB766A;
+  position: fixed;
+  top: 0rpx;
+}
+.headBoxSecond .headBoxFixed .searchBoxSecond.data-v-92bb8f34 {
+  margin-left: 20rpx;
+  background-color: white;
+  width: 66%;
+  height: 60rpx;
+  -webkit-border-radius: 60rpx;
+          border-radius: 60rpx;
+  line-height: 60rpx;
+  position: relative;
+}
+.headBoxSecond .headBoxFixed .searchBoxSecond .SmallIcon.data-v-92bb8f34 {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  margin-left: 20rpx;
+}
+.headBoxSecond .headBoxFixed .searchBoxSecond .searchInputSecond.data-v-92bb8f34 {
+  color: black;
+  height: 100%;
+  padding-left: 80rpx;
+  font-size: 26rpx;
+}
 .searchBox.data-v-92bb8f34 {
   position: relative;
   background-color: white;
@@ -56,9 +102,9 @@
   font-size: 26rpx;
 }
 .contentBox.data-v-92bb8f34 {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#f5f5f5));
-  background-image: -webkit-linear-gradient(#ffffff, #f5f5f5);
-  background-image: linear-gradient(#ffffff, #f5f5f5);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), color-stop(#ffffff), to(#f5f5f5));
+  background-image: -webkit-linear-gradient(#ffffff, #ffffff, #f5f5f5);
+  background-image: linear-gradient(#ffffff, #ffffff, #f5f5f5);
   width: 100%;
   padding-bottom: 60rpx;
   margin-top: -100rpx;
@@ -103,20 +149,24 @@
   -webkit-border-radius: 30rpx;
           border-radius: 30rpx;
 }
-.recommendBox .title.data-v-92bb8f34 {
+.recommendBox .suggestBox.data-v-92bb8f34 {
+  background-color: white;
+}
+.recommendBox .suggestBox .title.data-v-92bb8f34 {
   padding-top: 20rpx;
   margin-left: 24rpx;
   margin-bottom: 8rpx;
   font-weight: 700;
 }
-.recommendBox .recommendTitles.data-v-92bb8f34 {
+.recommendBox .suggestBox .recommendTitles.data-v-92bb8f34 {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
   text-align: center;
   font-size: 24rpx;
+  margin-bottom: 10rpx;
 }
-.recommendBox .recommendTitles .recommendItem.data-v-92bb8f34 {
+.recommendBox .suggestBox .recommendTitles .recommendItem.data-v-92bb8f34 {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
           flex: 1;
