@@ -60,6 +60,7 @@
   background-image: -webkit-linear-gradient(#ffffff, #f5f5f5);
   background-image: linear-gradient(#ffffff, #f5f5f5);
   width: 100%;
+  padding-bottom: 60rpx;
   margin-top: -100rpx;
   -webkit-border-radius: 34rpx;
           border-radius: 34rpx;
@@ -94,5 +95,123 @@
   height: 180rpx;
   margin-top: 20rpx;
   margin-left: 3%;
+}
+.recommendBox.data-v-92bb8f34 {
+  width: 100%;
+  margin-top: -40rpx;
+  background-color: white;
+  -webkit-border-radius: 30rpx;
+          border-radius: 30rpx;
+}
+.recommendBox .title.data-v-92bb8f34 {
+  padding-top: 20rpx;
+  margin-left: 24rpx;
+  margin-bottom: 8rpx;
+  font-weight: 700;
+}
+.recommendBox .recommendTitles.data-v-92bb8f34 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  text-align: center;
+  font-size: 24rpx;
+}
+.recommendBox .recommendTitles .recommendItem.data-v-92bb8f34 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+  -webkit-border-radius: 18rpx;
+          border-radius: 18rpx;
+  margin: 10rpx 16rpx;
+  padding: 14rpx 10rpx;
+  background-color: #F3F3F3;
+}
+.recommendBox .shopDetails.data-v-92bb8f34 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  width: 100;
+  padding: 10rpx 20rpx;
+}
+.recommendBox .shopDetails .left.data-v-92bb8f34 {
+  margin-right: 20rpx;
+}
+.recommendBox .shopDetails .left image.data-v-92bb8f34 {
+  width: 160rpx;
+  height: 160rpx;
+}
+.recommendBox .shopDetails .right.data-v-92bb8f34 {
+  width: 76%;
+}
+.recommendBox .shopDetails .right .rightFirstBox.data-v-92bb8f34 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  font-size: 24rpx;
+  margin-top: 8rpx;
+  color: #575757;
+}
+.recommendBox .shopDetails .right .rightFirstBox .rightFirstBoxLeft text.data-v-92bb8f34:first-child {
+  margin-right: 20rpx;
+  color: #E36515;
+}
+.recommendBox .shopDetails .right .rightFirstBox .rightFirstBoxRight text.data-v-92bb8f34:first-child {
+  margin-right: 20rpx;
+}
+.recommendBox .shopDetails .right .rightSecondBox.data-v-92bb8f34 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  font-size: 24rpx;
+  color: #575757;
+  margin-top: 8rpx;
+}
+.recommendBox .shopDetails .right .rightSecondBox view text.data-v-92bb8f34:first-child {
+  margin-left: 20rpx;
+}
+.recommendBox .shopDetails .right .rightSecondBox view .oldPrice.data-v-92bb8f34 {
+  color: #B1B1B1;
+  font-size: 22rpx;
+  text-decoration: line-through;
+  margin-left: 4rpx;
+}
+.recommendBox .shopDetails .right .rightThirdBox.data-v-92bb8f34 {
+  margin-top: 6rpx;
+  width: 250rpx;
+  background-color: #FFEEE2;
+  font-size: 22rpx;
+  color: #D1651F;
+  -webkit-border-radius: 6rpx;
+          border-radius: 6rpx;
+  text-align: center;
+  padding: 4rpx 0rpx;
+}
+.recommendBox .shopDetails .right .rightFourth.data-v-92bb8f34 {
+  height: 26rpx;
+  overflow: hidden;
+  padding-bottom: 40rpx;
+  border-bottom: 1px solid #F6F6F6;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
+  font-size: 22rpx;
+  color: #DE6050;
+}
+.recommendBox .shopDetails .right .rightFourth .cutBox.data-v-92bb8f34 {
+  -webkit-border-radius: 8rpx;
+          border-radius: 8rpx;
+  padding: 2rpx 6rpx;
+  margin-right: 10rpx;
+  margin-top: 10rpx;
+  border: 1px solid #F7C7C1;
+}
+.recommendBox .shopDetails .right ._h1.data-v-92bb8f34 {
+  font-size: 30rpx;
+  font-weight: 700;
 }
 

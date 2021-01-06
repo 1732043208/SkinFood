@@ -42,8 +42,6 @@
   "libVersion": "",
   "appid": "wx3dba0a729622cf9f",
   "projectname": "SkinFood",
-  "simulatorType": "wechat",
-  "simulatorPluginLibVersion": {},
   "condition": {
     "search": {
       "list": []

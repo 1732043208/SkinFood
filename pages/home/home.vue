@@ -33,6 +33,58 @@
 			</view>
 			<image src="../../static/home/navBar/advertising.png" class="advertising"></image>
 		</view>
+		<view class="recommendBox">
+			<h1 class="title">附近推荐</h1>
+			<view class="recommendTitles">
+				<block v-for="item in recommendTitles">
+					<view class="recommendItem">{{item}}</view>
+				</block>
+			</view>
+			<view class="recommendDetails">
+				<view v-for="item in recommendDetailsList">
+					<view class="shopDetails">
+						<view class="left">
+							<image :src="item.src"></image>
+						</view>
+						<view class="right">
+							<h1>{{item.title}}</h1>
+							<view class="rightFirstBox">
+								<view class="rightFirstBoxLeft">
+									<text>{{item.score}}分</text>
+									<text>月售{{item.sales}}</text>
+								</view>
+								<view class="rightFirstBoxRight">
+									<text>{{item.time}}分钟</text>
+									<text>{{item.distance}}</text>
+								</view>
+							</view>
+							<view class="rightSecondBox">
+
+								<text>起送￥{{item.Send}}</text>
+								<view v-if="item.ShippingPrice!=='0'">
+									<text>配送￥{{item.ShippingPrice}}</text>
+									<text class="oldPrice">￥{{item.oldShippingPrice}}</text>
+								</view>
+								<view v-if="item.ShippingPrice==='0'">
+									<text>免配送费</text>
+									<text class="oldPrice">￥{{item.oldShippingPrice}}</text>
+								</view>
+							</view>
+							<view class="rightThirdBox" v-if="item.isDetection">
+								<view>
+									<text>已检测体温，请放心食用</text>
+								</view>
+							</view>
+							<view class="rightFourth">
+								<view v-for="value in item.discountList">
+									<view class="cutBox">{{value}}</view>
+								</view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
 		<!-- #endif -->
 		<!-- 除了微信小程序之外运行的代码 -->
 		<!-- #ifndef MP-WEIXIN -->
@@ -101,7 +153,101 @@
 					id: 5,
 					title: '地方美食',
 					src: '../../static/home/navBar/navIcon5.png'
-				}]
+				}],
+				recommendTitles: ['津贴优惠', '满减优惠', '下单返红包', '进店领红包'],
+				recommendDetailsList: [{
+						title: '富鸽一家',
+						score: '4.7',
+						sales: '43',
+						time: '30',
+						distance: '136m',
+						src: '../../static/home/recommends/recommendImg1.png',
+						Send: '20',
+						ShippingPrice: '0.7',
+						oldShippingPrice: '4',
+						isDetection: true,
+						discountList: ['11减10', '30减20', '88减28', '128减36']
+					},
+					{
+						title: '花氧均衡营养美食(南沙店)',
+						score: '4.0',
+						sales: '138',
+						time: '30',
+						distance: '2.2km',
+						src: '../../static/home/recommends/recommendImg2.png',
+						Send: '20',
+						ShippingPrice: '0',
+						oldShippingPrice: '4',
+						isDetection: false,
+						discountList: ['10减6', '100减8', '200减16', '400减35', '500减40']
+					},
+					{
+						title: '鱼别走·酸菜鱼(南沙店)',
+						score: '4.6',
+						sales: '1518',
+						time: '30',
+						distance: '3.1km',
+						src: '../../static/home/recommends/recommendImg3.png',
+						Send: '0',
+						ShippingPrice: '0',
+						oldShippingPrice: '5',
+						isDetection: false,
+						discountList: ['20减19', '52减23', '80减36', '110减46', '0.1元特价']
+					},
+					{
+						title: '木桶饭(金洲店)',
+						score: '4.4',
+						sales: '258',
+						time: '36',
+						distance: '2.7km',
+						src: '../../static/home/recommends/recommendImg4.png',
+						Send: '20',
+						ShippingPrice: '0',
+						oldShippingPrice: '3',
+						isDetection: true,
+						discountList: ['36减5', '50减6', '2元店铺红包']
+					},
+					{
+						title: '港堡汉堡·炸鸡(金洲店)',
+						score: '4.7',
+						sales: '2459',
+						time: '38',
+						distance: '3.1km',
+						src: '../../static/home/recommends/recommendImg5.png',
+						Send: '20',
+						ShippingPrice: '0.9',
+						oldShippingPrice: '4',
+						isDetection: false,
+						discountList: ['35减19', '46减27', '66减34', '85减39']
+					},
+					{
+						title: '吃湘喝辣快餐',
+						score: '4.5',
+						sales: '364',
+						time: '30',
+						distance: '2.4km',
+						src: '../../static/home/recommends/recommendImg6.png',
+						Send: '15',
+						ShippingPrice: '0',
+						oldShippingPrice: '3',
+						isDetection: true,
+						discountList: ['30减8', '50减10', '2元店铺红包']
+					},
+					{
+						title: '排骨米饭',
+						score: '4.1',
+						sales: '913',
+						time: '30',
+						distance: '2.5km',
+						src: '../../static/home/recommends/recommendImg7.png',
+						Send: '15',
+						ShippingPrice: '0',
+						oldShippingPrice: '3',
+						isDetection: false,
+						discountList: ['25减8', '38减12', '80减23', '100减26']
+					},
+
+				]
 			}
 		},
 		methods: {
@@ -166,6 +312,7 @@
 	.contentBox {
 		background-image: linear-gradient(#ffffff, #f5f5f5);
 		width: 100%;
+		padding-bottom: 60rpx;
 		margin-top: -100rpx;
 		border-radius: 34rpx;
 		font-size: 24rpx;
@@ -178,7 +325,7 @@
 				text-align: center;
 				margin-top: 30rpx;
 
-				}
+			}
 		}
 
 		.navIcon {
@@ -196,6 +343,132 @@
 			height: 180rpx;
 			margin-top: 20rpx;
 			margin-left: 3%;
+		}
+	}
+
+	.recommendBox {
+		width: 100%;
+		margin-top: -40rpx;
+		background-color: white;
+		border-radius: 30rpx;
+
+		.title {
+			padding-top: 20rpx;
+			margin-left: 24rpx;
+			margin-bottom: 8rpx;
+			font-weight: 700;
+		}
+
+		.recommendTitles {
+			display: flex;
+			text-align: center;
+			font-size: 24rpx;
+
+			.recommendItem {
+				flex: 1;
+				border-radius: 18rpx;
+				margin: 10rpx 16rpx;
+				padding: 14rpx 10rpx;
+				background-color: #F3F3F3;
+			}
+		}
+
+		.shopDetails {
+			display: flex;
+			width: 100;
+			padding: 10rpx 20rpx;
+
+			.left {
+				margin-right: 20rpx;
+
+				image {
+					width: 160rpx;
+					height: 160rpx;
+				}
+			}
+
+			.right {
+				width: 76%;
+
+				.rightFirstBox {
+					display: flex;
+					justify-content: space-between;
+					font-size: 24rpx;
+					margin-top: 8rpx;
+					color: #575757;
+
+					.rightFirstBoxLeft {
+						text:first-child {
+							margin-right: 20rpx;
+							color: #E36515;
+						}
+					}
+
+					.rightFirstBoxRight {
+						text:first-child {
+							margin-right: 20rpx;
+						}
+					}
+				}
+
+				.rightSecondBox {
+					display: flex;
+					font-size: 24rpx;
+					color: #575757;
+					margin-top: 8rpx;
+
+					view {
+
+						text:first-child {
+							margin-left: 20rpx;
+						}
+
+						.oldPrice {
+							color: #B1B1B1;
+							font-size: 22rpx;
+							text-decoration: line-through;
+							margin-left: 4rpx;
+						}
+					}
+
+				}
+
+				.rightThirdBox {
+					margin-top: 6rpx;
+					width: 250rpx;
+					background-color: #FFEEE2;
+					font-size: 22rpx;
+					color: #D1651F;
+					border-radius: 6rpx;
+					text-align: center;
+					padding: 4rpx 0rpx;
+				}
+
+				.rightFourth {
+					height: 26rpx;
+					overflow: hidden;
+					padding-bottom: 40rpx;
+					border-bottom: 1px solid #F6F6F6;
+					display: flex;
+					flex-wrap: wrap;
+
+					font-size: 22rpx;
+					color: #DE6050;
+
+					.cutBox {
+						border-radius: 8rpx;
+						padding: 2rpx 6rpx;
+						margin-right: 10rpx;
+						margin-top: 10rpx;
+						border: 1px solid #F7C7C1;
+					}
+				}
+
+				h1 {
+					font-size: 30rpx;
+					font-weight: 700;
+				}
+			}
 		}
 	}
 
