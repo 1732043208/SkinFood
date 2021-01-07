@@ -9,9 +9,10 @@
 		}
 
 	],
-	"globalStyle":{
-		"navigationStyle":"custom",
-		"themeColor":"#FB766A"
+
+	"globalStyle": {
+		"navigationStyle": "custom",
+		"themeColor": "#FB766A"
 	},
 
 	"tabBar": {

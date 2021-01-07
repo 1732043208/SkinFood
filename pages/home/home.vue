@@ -9,9 +9,14 @@
 					<text>皮了么</text>
 					<text>|</text>
 				</view>
-				<view>
-					<image src="../../static/home/headBox/location.png" class="SmallIcon"></image>
-					金沙路越秀滨海新城
+				<view class="usersLocationBox">
+					<view>
+						<image src="../../static/home/headBox/location.png" class="SmallIcon"></image>
+					</view>
+					<view class="usersLocationName">{{addressName}}</view>
+					<view>
+						<image src="../../static/home/headBox/down.png" class="headDownImg"></image>
+					</view>
 				</view>
 			</view>
 			<view class="searchBox">
@@ -51,7 +56,7 @@
 					</block>
 				</view>
 			</view>
-			<view class="recommendDetails"  :class="{'is_fixedSecond':isfixed}">
+			<view class="recommendDetails" :class="{'is_fixedSecond':isfixed}">
 				<view v-for="item in recommendDetailsList">
 					<view class="shopDetails">
 						<view class="left">
@@ -120,6 +125,7 @@
 </template>
 
 <script>
+	import amap from '../../common/amap-wx.130.js'
 	export default {
 		data() {
 			return {
@@ -266,8 +272,12 @@
 				//"附近推荐"是否吸顶
 				isfixed: false,
 				//顶部搜索框状态
-				isChange: false
-
+				isChange: false,
+				amapPlugin: null,
+				//高德key
+				key: '869978775d6b751ea6cc8f6283cb363c',
+				//用户当前位置
+				addressName: '',
 
 			}
 		},
@@ -281,8 +291,28 @@
 				this.menutop = res[0].top;
 			})
 
+			this.amapPlugin = new amap.AMapWX({
+				key: this.key
+			});
+			//获取当前位置(小程序)
+			this.getRegeo();
 		},
-		methods: {},
+
+		methods: {
+			getRegeo() {
+				uni.showLoading({
+					title: '获取信息中'
+				});
+				this.amapPlugin.getRegeo({
+					success: (data) => {
+						console.log(data)
+						this.addressName = data[0].name;
+						uni.hideLoading();
+
+					}
+				});
+			}
+		},
 		computed: {
 			// 监听顶部搜索框状态变化
 			isChangeFunc() {
@@ -316,10 +346,11 @@
 
 	// 微信小程序执行的代码
 	/* #ifdef MP-WEIXIN */
+
 	.is_fixed {
 		position: fixed;
 		left: 0;
-		top: 146rpx;
+		top: 144rpx;
 		right: 0;
 	}
 
@@ -349,6 +380,48 @@
 				font-weight: 700;
 				font-size: 34rpx;
 			}
+
+			.usersLocationBox {
+				font-size: 26rpx;
+
+				display: flex;
+
+				.usersLocationName {
+					width: 320rpx;
+					white-space: nowrap;
+					overflow: hidden;
+					text-overflow: ellipsis;
+				}
+
+				.headDownImg {
+					width: 18rpx;
+					height: 18rpx;
+					margin-bottom: -4rpx;
+				}
+			}
+		}
+	}
+
+	.searchBox {
+		position: relative;
+		background-color: white;
+		width: 94%;
+		height: 70rpx;
+		margin: 24rpx auto;
+		border-radius: 70rpx;
+		line-height: 70rpx;
+
+		.SmallIcon {
+			position: absolute;
+			top: 16rpx;
+			margin-left: 20rpx;
+		}
+
+		.searchInput {
+			color: black;
+			height: 100%;
+			padding-left: 80rpx;
+			font-size: 26rpx;
 		}
 	}
 
@@ -374,7 +447,9 @@
 				height: 60rpx;
 				border-radius: 60rpx;
 				line-height: 60rpx;
-position: relative;
+				position: relative;
+				margin-top: 4rpx;
+
 				.SmallIcon {
 					position: absolute;
 					top: 50%;
@@ -393,28 +468,7 @@ position: relative;
 		}
 	}
 
-	.searchBox {
-		position: relative;
-		background-color: white;
-		width: 94%;
-		height: 70rpx;
-		margin: 20rpx auto;
-		border-radius: 70rpx;
-		line-height: 70rpx;
 
-		.SmallIcon {
-			position: absolute;
-			top: 16rpx;
-			margin-left: 20rpx;
-		}
-
-		.searchInput {
-			color: black;
-			height: 100%;
-			padding-left: 80rpx;
-			font-size: 26rpx;
-		}
-	}
 
 	.contentBox {
 		background-image: linear-gradient(#ffffff, #ffffff, #f5f5f5);

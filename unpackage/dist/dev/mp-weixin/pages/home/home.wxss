@@ -14,7 +14,7 @@
 .is_fixed.data-v-92bb8f34 {
   position: fixed;
   left: 0;
-  top: 146rpx;
+  top: 144rpx;
   right: 0;
 }
 .is_fixedSecond.data-v-92bb8f34 {
@@ -43,6 +43,44 @@
   font-weight: 700;
   font-size: 34rpx;
 }
+.headBox .locationBox .usersLocationBox.data-v-92bb8f34 {
+  font-size: 26rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+.headBox .locationBox .usersLocationBox .usersLocationName.data-v-92bb8f34 {
+  width: 320rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.headBox .locationBox .usersLocationBox .headDownImg.data-v-92bb8f34 {
+  width: 18rpx;
+  height: 18rpx;
+  margin-bottom: -4rpx;
+}
+.searchBox.data-v-92bb8f34 {
+  position: relative;
+  background-color: white;
+  width: 94%;
+  height: 70rpx;
+  margin: 24rpx auto;
+  -webkit-border-radius: 70rpx;
+          border-radius: 70rpx;
+  line-height: 70rpx;
+}
+.searchBox .SmallIcon.data-v-92bb8f34 {
+  position: absolute;
+  top: 16rpx;
+  margin-left: 20rpx;
+}
+.searchBox .searchInput.data-v-92bb8f34 {
+  color: black;
+  height: 100%;
+  padding-left: 80rpx;
+  font-size: 26rpx;
+}
 .headBoxSecond.data-v-92bb8f34 {
   padding-top: 60rpx;
   width: 100%;
@@ -66,6 +104,7 @@
           border-radius: 60rpx;
   line-height: 60rpx;
   position: relative;
+  margin-top: 4rpx;
 }
 .headBoxSecond .headBoxFixed .searchBoxSecond .SmallIcon.data-v-92bb8f34 {
   position: absolute;
@@ -75,27 +114,6 @@
   margin-left: 20rpx;
 }
 .headBoxSecond .headBoxFixed .searchBoxSecond .searchInputSecond.data-v-92bb8f34 {
-  color: black;
-  height: 100%;
-  padding-left: 80rpx;
-  font-size: 26rpx;
-}
-.searchBox.data-v-92bb8f34 {
-  position: relative;
-  background-color: white;
-  width: 94%;
-  height: 70rpx;
-  margin: 20rpx auto;
-  -webkit-border-radius: 70rpx;
-          border-radius: 70rpx;
-  line-height: 70rpx;
-}
-.searchBox .SmallIcon.data-v-92bb8f34 {
-  position: absolute;
-  top: 16rpx;
-  margin-left: 20rpx;
-}
-.searchBox .searchInput.data-v-92bb8f34 {
   color: black;
   height: 100%;
   padding-left: 80rpx;
