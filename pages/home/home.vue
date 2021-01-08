@@ -9,7 +9,7 @@
 					<text>皮了么</text>
 					<text>|</text>
 				</view>
-				<view class="usersLocationBox">
+				<view class="usersLocationBox" v-if="isGetLocation">
 					<view>
 						<image src="../../static/home/headBox/location.png" class="SmallIcon"></image>
 					</view>
@@ -17,6 +17,9 @@
 					<view>
 						<image src="../../static/home/headBox/down.png" class="headDownImg"></image>
 					</view>
+				</view>
+				<view v-if="!isGetLocation" style="font-size: 26rpx;">
+					暂无获取到位置信息
 				</view>
 			</view>
 			<view class="searchBox">
@@ -51,8 +54,8 @@
 			<view class="suggestBox" :class="{'is_fixed':isfixed}">
 				<h1 class="title">附近推荐</h1>
 				<view class="recommendTitles">
-					<block v-for="item in recommendTitles">
-						<view class="recommendItem">{{item}}</view>
+					<block v-for="(item,index) in recommendTitles">
+						<view class="recommendItem" @click="suggestClick(index)" :class="{'suggestChange':currentIndex===index}">{{item}}</view>
 					</block>
 				</view>
 			</view>
@@ -63,7 +66,10 @@
 							<image :src="item.src"></image>
 						</view>
 						<view class="right">
-							<h1>{{item.title}}</h1>
+							<view class="rightTitleBox">
+								<h1>{{item.title}}</h1>
+								<image src="../../static/home/recommends/ellipsis-v.png" class="ellipsis"></image>
+							</view>
 							<view class="rightFirstBox">
 								<view class="rightFirstBoxLeft">
 									<text>{{item.score}}分</text>
@@ -107,8 +113,7 @@
 		<view class="headBox">
 			<view class="locationBox">
 				<view>
-					<image src="../../static/home/headBox/location.png" class="SmallIcon"></image>
-					<text>金沙路越秀滨海新城</text>
+					<image src="../../static/home/headBox/location.png" class="SmallIcon" </image> <text>金沙路越秀滨海新城</text>
 				</view>
 				<view>
 					<image src="../../static/home/headBox/ScanCode.png" class="SmallIcon"></image>
@@ -278,6 +283,8 @@
 				key: '869978775d6b751ea6cc8f6283cb363c',
 				//用户当前位置
 				addressName: '',
+				currentIndex: 0,
+				isGetLocation: false
 
 			}
 		},
@@ -307,10 +314,14 @@
 					success: (data) => {
 						console.log(data)
 						this.addressName = data[0].name;
+						this.isGetLocation = true
 						uni.hideLoading();
 
 					}
 				});
+			},
+			suggestClick(index) {
+				this.currentIndex = index
 			}
 		},
 		computed: {
@@ -346,6 +357,7 @@
 
 	// 微信小程序执行的代码
 	/* #ifdef MP-WEIXIN */
+
 
 	.is_fixed {
 		position: fixed;
@@ -531,10 +543,15 @@
 
 				.recommendItem {
 					flex: 1;
-					border-radius: 18rpx;
-					margin: 10rpx 16rpx;
+					border-radius: 16rpx;
+					margin: 10rpx 14rpx;
 					padding: 14rpx 10rpx;
 					background-color: #F3F3F3;
+				}
+
+				.suggestChange {
+					color: #1997DE;
+					background-color: #CCEDFF;
 				}
 			}
 		}
@@ -556,6 +573,17 @@
 
 			.right {
 				width: 76%;
+				
+				.rightTitleBox {
+					display: flex;
+justify-content: space-between;
+					.ellipsis {
+						margin-top: 10rpx;
+						width: 24rpx;
+						height: 24rpx;
+					}
+				}
+
 
 				.rightFirstBox {
 					display: flex;

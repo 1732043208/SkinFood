@@ -188,11 +188,15 @@
   -webkit-box-flex: 1;
   -webkit-flex: 1;
           flex: 1;
-  -webkit-border-radius: 18rpx;
-          border-radius: 18rpx;
-  margin: 10rpx 16rpx;
+  -webkit-border-radius: 16rpx;
+          border-radius: 16rpx;
+  margin: 10rpx 14rpx;
   padding: 14rpx 10rpx;
   background-color: #F3F3F3;
+}
+.recommendBox .suggestBox .recommendTitles .suggestChange.data-v-92bb8f34 {
+  color: #1997DE;
+  background-color: #CCEDFF;
 }
 .recommendBox .shopDetails.data-v-92bb8f34 {
   display: -webkit-box;
@@ -210,6 +214,19 @@
 }
 .recommendBox .shopDetails .right.data-v-92bb8f34 {
   width: 76%;
+}
+.recommendBox .shopDetails .right .rightTitleBox.data-v-92bb8f34 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+}
+.recommendBox .shopDetails .right .rightTitleBox .ellipsis.data-v-92bb8f34 {
+  margin-top: 10rpx;
+  width: 24rpx;
+  height: 24rpx;
 }
 .recommendBox .shopDetails .right .rightFirstBox.data-v-92bb8f34 {
   display: -webkit-box;
