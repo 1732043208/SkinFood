@@ -267,6 +267,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 var _amapWx = _interopRequireDefault(__webpack_require__(/*! ../../common/amap-wx.130.js */ 17));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
 //
 //
@@ -398,20 +409,20 @@ var _amapWx = _interopRequireDefault(__webpack_require__(/*! ../../common/amap-w
 //
 //
 //
-var _default = { data: function data() {return { navImgList: [{ id: 1, title: '美食', src: '../../static/home/navBar/navImg1.png' }, { id: 2, title: '超市便利', src: '../../static/home/navBar/navImg2.png' }, { id: 3, title: '水果', src: '../../static/home/navBar/navImg3.png' }, { id: 4, title: '送药上门', src: '../../static/home/navBar/navImg4.png' }, { id: 5, title: '甜品饮品', src: '../../static/home/navBar/navImg5.png' }], navIconList: [{ id: 1, title: '分享赚钱', src: '../../static/home/navBar/navIcon1.png' }, { id: 2, title: '买菜', src: '../../static/home/navBar/navIcon2.png' }, { id: 3, title: '配送减免', src: '../../static/home/navBar/navIcon3.png' }, { id: 4, title: '订了么', src: '../../static/home/navBar/navIcon4.png' }, { id: 5, title: '地方美食', src: '../../static/home/navBar/navIcon5.png' }], recommendTitles: ['津贴优惠', '满减优惠', '下单返红包', '进店领红包'], recommendDetailsList: [{ title: '富鸽一家', score: '4.7', sales: '43', time: '30', distance: '136m', src: '../../static/home/recommends/recommendImg1.png', Send: '20', ShippingPrice: '0.7', oldShippingPrice: '4', isDetection: true, discountList: ['11减10', '30减20', '88减28', '128减36'] }, { title: '花氧均衡营养美食(南沙店)', score: '4.0', sales: '138', time: '30', distance: '2.2km', src: '../../static/home/recommends/recommendImg2.png', Send: '20', ShippingPrice: '0', oldShippingPrice: '4', isDetection: false, discountList: ['10减6', '100减8', '200减16', '400减35', '500减40'] }, { title: '鱼别走·酸菜鱼(南沙店)', score: '4.6', sales: '1518', time: '30', distance: '3.1km', src: '../../static/home/recommends/recommendImg3.png', Send: '0', ShippingPrice: '0', oldShippingPrice: '5', isDetection: false, discountList: ['20减19', '52减23', '80减36', '110减46', '0.1元特价'] }, { title: '木桶饭(金洲店)', score: '4.4', sales: '258', time: '36', distance: '2.7km', src: '../../static/home/recommends/recommendImg4.png', Send: '20', ShippingPrice: '0', oldShippingPrice: '3', isDetection: true, discountList: ['36减5', '50减6', '2元店铺红包'] }, { title: '港堡汉堡·炸鸡(金洲店)', score: '4.7', sales: '2459', time: '38', distance: '3.1km', src: '../../static/home/recommends/recommendImg5.png', Send: '20', ShippingPrice: '0.9', oldShippingPrice: '4', isDetection: false, discountList: ['35减19', '46减27', '66减34', '85减39'] }, { title: '吃湘喝辣快餐', score: '4.5', sales: '364', time: '30', distance: '2.4km', src: '../../static/home/recommends/recommendImg6.png', Send: '15', ShippingPrice: '0', oldShippingPrice: '3', isDetection: true, discountList: ['30减8', '50减10', '2元店铺红包'] }, { title: '排骨米饭', score: '4.1', sales: '913', time: '30', distance: '2.5km', src: '../../static/home/recommends/recommendImg7.png',
-        Send: '15',
-        ShippingPrice: '0',
-        oldShippingPrice: '3',
-        isDetection: false,
-        discountList: ['25减8', '38减12', '80减23', '100减26'] }],
-
-
-
-      //页面滚动的距离
-      rect: '',
-      //组件距离顶部的距离
-      menutop: '',
-      //"附近推荐"是否吸顶
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = { data: function data() {return { navImgList: [{ id: 1, title: '美食', src: '../../static/home/navBar/navImg1.png' }, { id: 2, title: '超市便利', src: '../../static/home/navBar/navImg2.png' }, { id: 3, title: '水果', src: '../../static/home/navBar/navImg3.png' }, { id: 4, title: '送药上门', src: '../../static/home/navBar/navImg4.png' }, { id: 5, title: '甜品饮品', src: '../../static/home/navBar/navImg5.png' }], navIconList: [{ id: 1, title: '分享赚钱', src: '../../static/home/navBar/navIcon1.png' }, { id: 2, title: '买菜', src: '../../static/home/navBar/navIcon2.png' }, { id: 3, title: '配送减免', src: '../../static/home/navBar/navIcon3.png' }, { id: 4, title: '订了么', src: '../../static/home/navBar/navIcon4.png' }, { id: 5, title: '地方美食', src: '../../static/home/navBar/navIcon5.png' }], recommendTitles: ['津贴优惠', '满减优惠', '下单返红包', '进店领红包'], recommendDetailsList: [{ title: '富鸽一家', score: '4.7', sales: '43', time: '30', distance: '136m', src: '../../static/home/recommends/recommendImg1.png', Send: '20', ShippingPrice: '0.7', oldShippingPrice: '4', isDetection: true, discountList: ['11减10', '30减20', '88减28', '128减36'] }, { title: '花氧均衡营养美食(南沙店)', score: '4.0', sales: '138', time: '30', distance: '2.2km', src: '../../static/home/recommends/recommendImg2.png', Send: '20', ShippingPrice: '0', oldShippingPrice: '4', isDetection: false, discountList: ['10减6', '100减8', '200减16', '400减35', '500减40'] }, { title: '鱼别走·酸菜鱼(南沙店)', score: '4.6', sales: '1518', time: '30', distance: '3.1km', src: '../../static/home/recommends/recommendImg3.png', Send: '0', ShippingPrice: '0', oldShippingPrice: '5', isDetection: false, discountList: ['20减19', '52减23', '80减36', '110减46', '0.1元特价'] }, { title: '木桶饭(金洲店)', score: '4.4', sales: '258', time: '36', distance: '2.7km', src: '../../static/home/recommends/recommendImg4.png', Send: '20', ShippingPrice: '0', oldShippingPrice: '3', isDetection: true, discountList: ['36减5', '50减6', '2元店铺红包'] }, { title: '港堡汉堡·炸鸡(金洲店)', score: '4.7', sales: '2459', time: '38', distance: '3.1km', src: '../../static/home/recommends/recommendImg5.png', Send: '20', ShippingPrice: '0.9', oldShippingPrice: '4', isDetection: false, discountList: ['35减19', '46减27', '66减34', '85减39'] }, { title: '吃湘喝辣快餐', score: '4.5', sales: '364', time: '30', distance: '2.4km', src: '../../static/home/recommends/recommendImg6.png', Send: '15', ShippingPrice: '0', oldShippingPrice: '3', isDetection: true, discountList: ['30减8', '50减10', '2元店铺红包'] }, { title: '排骨米饭', score: '4.1', sales: '913', time: '30', distance: '2.5km', src: '../../static/home/recommends/recommendImg7.png', Send: '15', ShippingPrice: '0', oldShippingPrice: '3', isDetection: false, discountList: ['25减8', '38减12', '80减23', '100减26'] }], //页面滚动的距离
+      rect: '', //组件距离顶部的距离
+      menutop: '', //"附近推荐"是否吸顶
       isfixed: false,
       //顶部搜索框状态
       isChange: false,
@@ -426,6 +437,7 @@ var _default = { data: function data() {return { navImgList: [{ id: 1, title: '�
 
   },
   onLoad: function onLoad() {var _this = this;
+
     // 监听筛选组件距离顶部的距离
     var query = uni.createSelectorQuery();
     query.select('.suggestBox').boundingClientRect(function (res) {
@@ -440,9 +452,12 @@ var _default = { data: function data() {return { navImgList: [{ id: 1, title: '�
 
     //获取当前位置(小程序)
     this.getRegeo();
+
+
   },
 
   methods: {
+
     getRegeo: function getRegeo() {var _this2 = this;
       uni.showLoading({
         title: '获取信息中' });
@@ -459,9 +474,16 @@ var _default = { data: function data() {return { navImgList: [{ id: 1, title: '�
     },
     suggestClick: function suggestClick(index) {
       this.currentIndex = index;
+    },
+    isLikeFunc: function isLikeFunc(index) {
+      console.log(index);
+      this.isLike = index;
     } },
 
+
+
   computed: {
+
     // 监听顶部搜索框状态变化
     isChangeFunc: function isChangeFunc() {
       if (this.rect >= 10) {
@@ -479,6 +501,8 @@ var _default = { data: function data() {return { navImgList: [{ id: 1, title: '�
         this.isfixed = false;
       }
     } },
+
+
 
   onPageScroll: function onPageScroll(e) {
     // console.log(e.scrollTop)

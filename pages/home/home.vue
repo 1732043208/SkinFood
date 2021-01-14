@@ -60,8 +60,10 @@
 				</view>
 			</view>
 			<view class="recommendDetails" :class="{'is_fixedSecond':isfixed}">
-				<view v-for="item in recommendDetailsList">
+				<view v-for="(item,index) in recommendDetailsList" :key="item.id">
+
 					<view class="shopDetails">
+
 						<view class="left">
 							<image :src="item.src"></image>
 						</view>
@@ -104,27 +106,36 @@
 							</view>
 						</view>
 					</view>
-				</view>
-			</view>
-		</view>
-		<!-- #endif -->
-		<!-- 除了微信小程序之外运行的代码 -->
-		<!-- #ifndef MP-WEIXIN -->
-		<view class="headBox">
-			<view class="locationBox">
-				<view>
-					<image src="../../static/home/headBox/location.png" class="SmallIcon" </image> <text>金沙路越秀滨海新城</text>
-				</view>
-				<view>
-					<image src="../../static/home/headBox/ScanCode.png" class="SmallIcon"></image>
-					<image src="../../static/home/headBox/message.png" class="SmallIcon"></image>
-				</view>
-			</view>
-		</view>
-		<view class="contentBox">
 
+				</view>
+			</view>
 		</view>
-		<!-- #endif -->
+	</view>
+	<!-- #endif -->
+	<!-- 除了微信小程序之外运行的代码 -->
+	<!-- #ifndef MP-WEIXIN -->
+	<view class="headBox">
+		<view class="locationBox">
+			<view>
+				<image src="../../static/home/headBox/location.png" class="SmallIcon"></image>
+				<text>金沙路越秀滨海新城</text>
+			</view>
+			<view>
+				<image src="../../static/home/headBox/ScanCode.png" class="scanCode"></image>
+				<image src="../../static/home/headBox/message.png" class="message"></image>
+			</view>
+		</view>
+	</view>
+	<view class="contentBox">
+		<view class="searchBox">
+			<view class="left">
+				<image src="../../static/home/headBox/search.png" class="searchIcon"></image>
+				<input type="text" placeholder="汉堡王 55减20">
+			</view>
+			<view class="search">搜索</view>
+		</view>
+	</view>
+	<!-- #endif -->
 
 	</view>
 </template>
@@ -284,11 +295,12 @@
 				//用户当前位置
 				addressName: '',
 				currentIndex: 0,
-				isGetLocation: false
+				isGetLocation: false,
 
 			}
 		},
 		onLoad() {
+			// #ifdef MP-WEIXIN
 			// 监听筛选组件距离顶部的距离
 			const query = uni.createSelectorQuery()
 			query.select('.suggestBox').boundingClientRect((res) => {
@@ -303,9 +315,12 @@
 			});
 			//获取当前位置(小程序)
 			this.getRegeo();
+			// #endif
+
 		},
 
 		methods: {
+			// #ifdef MP-WEIXIN
 			getRegeo() {
 				uni.showLoading({
 					title: '获取信息中'
@@ -322,9 +337,16 @@
 			},
 			suggestClick(index) {
 				this.currentIndex = index
+			},
+			isLikeFunc(index) {
+				console.log(index)
+				this.isLike = index
 			}
+			// #endif
+
 		},
 		computed: {
+			// #ifdef MP-WEIXIN
 			// 监听顶部搜索框状态变化
 			isChangeFunc() {
 				if (this.rect >= 10) {
@@ -342,6 +364,8 @@
 					this.isfixed = false
 				}
 			}
+			// #endif
+
 		},
 		onPageScroll(e) {
 			// console.log(e.scrollTop)
@@ -559,7 +583,7 @@
 
 		.shopDetails {
 			display: flex;
-			width: 100;
+			box-sizing: content-box;
 			padding: 10rpx 20rpx;
 
 			.left {
@@ -573,10 +597,11 @@
 
 			.right {
 				width: 76%;
-				
+
 				.rightTitleBox {
 					display: flex;
-justify-content: space-between;
+					justify-content: space-between;
+
 					.ellipsis {
 						margin-top: 10rpx;
 						width: 24rpx;
@@ -672,7 +697,7 @@ justify-content: space-between;
 	// 除微信小程序外执行的代码
 	/* #ifndef MP-WEIXIN */
 	.headBox {
-		padding-top: 100rpx;
+		padding-top: 80rpx;
 		width: 100%;
 		height: 180rpx;
 		background-color: @themeColor;
@@ -682,11 +707,19 @@ justify-content: space-between;
 			display: flex;
 			justify-content: space-between;
 			padding: 0 20rpx;
+			height: 80rpx;
+			line-height: 80rpx;
 
-			.SmallIcon:nth-child(2) {
-				margin-left: 40rpx
+			.scanCode {
+				width: 66rpx;
+				height: 66rpx;
 			}
 
+			.message {
+				width: 60rpx;
+				height: 60rpx;
+				margin-left: 20rpx;
+			}
 		}
 	}
 
@@ -695,7 +728,46 @@ justify-content: space-between;
 		width: 100%;
 		height: 1000rpx;
 		margin-top: -100rpx;
-		border-radius: 34rpx;
+		border-radius: 38rpx;
+		padding-top: 20rpx;
+
+		.searchBox {
+			display: flex;
+			justify-content: space-between;
+			width: 94%;
+			height: 70rpx;
+			line-height: 70rpx;
+			background-color: #F2F3F5;
+			margin: 0 auto;
+			border-radius: 70rpx;
+			
+
+			.left {
+				display: flex;
+				margin-left: 20rpx;
+				input {
+					margin-left: 20rpx;
+					font-size: 26rpx;
+					height: 70rpx;
+				}
+
+				.searchIcon {
+					width: 38rpx;
+					height: 38rpx;
+					margin-top: 18rpx;
+				}
+			}
+
+			.search {
+				color: white;
+				background-color: @themeColor;
+				border-radius: 70rpx;
+				width: 120rpx;
+				margin: 6rpx;
+				line-height: 58rpx;
+				text-align: center;
+			}
+		}
 	}
 
 	/* #endif */
