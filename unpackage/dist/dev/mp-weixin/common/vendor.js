@@ -1,6 +1,6 @@
-(global["webpackJsonp"] = global["webpackJsonp"] || []).push([["common/vendor"],{
-
-/***/ 1:
+(global["webpackJsonp"] = global["webpackJsonp"] || []).push([["common/vendor"],[
+/* 0 */,
+/* 1 */
 /*!************************************************************!*\
   !*** ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js ***!
   \************************************************************/
@@ -904,7 +904,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"VUE_APP_NAME":"SkinFood","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"SkinFood","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -1805,178 +1805,7 @@ var uni$1 = uni;var _default =
 uni$1;exports.default = _default;
 
 /***/ }),
-
-/***/ 10:
-/*!**********************************************************************************************************!*\
-  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js ***!
-  \**********************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return normalizeComponent; });
-/* globals __VUE_SSR_CONTEXT__ */
-
-// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
-// This module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle.
-
-function normalizeComponent (
-  scriptExports,
-  render,
-  staticRenderFns,
-  functionalTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier, /* server only */
-  shadowMode, /* vue-cli only */
-  components, // fixed by xxxxxx auto components
-  renderjs // fixed by xxxxxx renderjs
-) {
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // fixed by xxxxxx auto components
-  if (components) {
-    if (!options.components) {
-      options.components = {}
-    }
-    var hasOwn = Object.prototype.hasOwnProperty
-    for (var name in components) {
-      if (hasOwn.call(components, name) && !hasOwn.call(options.components, name)) {
-        options.components[name] = components[name]
-      }
-    }
-  }
-  // fixed by xxxxxx renderjs
-  if (renderjs) {
-    (renderjs.beforeCreate || (renderjs.beforeCreate = [])).unshift(function() {
-      this[renderjs.__module] = this
-    });
-    (options.mixins || (options.mixins = [])).push(renderjs)
-  }
-
-  // render functions
-  if (render) {
-    options.render = render
-    options.staticRenderFns = staticRenderFns
-    options._compiled = true
-  }
-
-  // functional template
-  if (functionalTemplate) {
-    options.functional = true
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = 'data-v-' + scopeId
-  }
-
-  var hook
-  if (moduleIdentifier) { // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
-    }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = shadowMode
-      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
-      : injectStyles
-  }
-
-  if (hook) {
-    if (options.functional) {
-      // for template-only hot-reload because in that case the render fn doesn't
-      // go through the normalizer
-      options._injectStyles = hook
-      // register for functioal component in vue file
-      var originalRender = options.render
-      options.render = function renderWithStyleInjection (h, context) {
-        hook.call(context)
-        return originalRender(h, context)
-      }
-    } else {
-      // inject component registration as beforeCreate hook
-      var existing = options.beforeCreate
-      options.beforeCreate = existing
-        ? [].concat(existing, hook)
-        : [hook]
-    }
-  }
-
-  return {
-    exports: scriptExports,
-    options: options
-  }
-}
-
-
-/***/ }),
-
-/***/ 17:
-/*!**************************************************!*\
-  !*** E:/SkinFood/SkinFood/common/amap-wx.130.js ***!
-  \**************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function AMapWX(a) {this.key = a.key;this.requestConfig = { key: a.key, s: "rsx", platform: "WXJS", appname: a.key, sdkversion: "1.2.0", logversion: "2.0" };this.MeRequestConfig = { key: a.key, serviceName: "https://restapi.amap.com/rest/me" };}
-AMapWX.prototype.getWxLocation = function (a, b) {wx.getLocation({ type: "gcj02", success: function success(c) {c = c.longitude + "," + c.latitude;wx.setStorage({ key: "userLocation", data: c });b(c);}, fail: function fail(c) {wx.getStorage({ key: "userLocation", success: function success(d) {d.data && b(d.data);} });a.fail({ errCode: "0", errMsg: c.errMsg || "" });} });};
-AMapWX.prototype.getMEKeywordsSearch = function (a) {if (!a.options) return a.fail({ errCode: "0", errMsg: "\u7F3A\u5C11\u5FC5\u8981\u53C2\u6570" });var b = a.options,c = this.MeRequestConfig,d = { key: c.key, s: "rsx", platform: "WXJS", appname: a.key, sdkversion: "1.2.0", logversion: "2.0" };b.layerId && (d.layerId = b.layerId);b.keywords && (d.keywords = b.keywords);b.city && (d.city = b.city);b.filter && (d.filter = b.filter);b.sortrule && (d.sortrule = b.sortrule);b.pageNum && (d.pageNum = b.pageNum);b.pageSize && (d.pageSize = b.pageSize);b.sig && (d.sig =
-  b.sig);wx.request({ url: c.serviceName + "/cpoint/datasearch/local", data: d, method: "GET", header: { "content-type": "application/json" }, success: function success(e) {(e = e.data) && e.status && "1" === e.status && 0 === e.code ? a.success(e.data) : a.fail({ errCode: "0", errMsg: e });}, fail: function fail(e) {a.fail({ errCode: "0", errMsg: e.errMsg || "" });} });};
-AMapWX.prototype.getMEIdSearch = function (a) {if (!a.options) return a.fail({ errCode: "0", errMsg: "\u7F3A\u5C11\u5FC5\u8981\u53C2\u6570" });var b = a.options,c = this.MeRequestConfig,d = { key: c.key, s: "rsx", platform: "WXJS", appname: a.key, sdkversion: "1.2.0", logversion: "2.0" };b.layerId && (d.layerId = b.layerId);b.id && (d.id = b.id);b.sig && (d.sig = b.sig);wx.request({ url: c.serviceName + "/cpoint/datasearch/id", data: d, method: "GET", header: { "content-type": "application/json" }, success: function success(e) {(e = e.data) && e.status && "1" === e.status &&
-      0 === e.code ? a.success(e.data) : a.fail({ errCode: "0", errMsg: e });}, fail: function fail(e) {a.fail({ errCode: "0", errMsg: e.errMsg || "" });} });};
-AMapWX.prototype.getMEPolygonSearch = function (a) {if (!a.options) return a.fail({ errCode: "0", errMsg: "\u7F3A\u5C11\u5FC5\u8981\u53C2\u6570" });var b = a.options,c = this.MeRequestConfig,d = { key: c.key, s: "rsx", platform: "WXJS", appname: a.key, sdkversion: "1.2.0", logversion: "2.0" };b.layerId && (d.layerId = b.layerId);b.keywords && (d.keywords = b.keywords);b.polygon && (d.polygon = b.polygon);b.filter && (d.filter = b.filter);b.sortrule && (d.sortrule = b.sortrule);b.pageNum && (d.pageNum = b.pageNum);b.pageSize && (d.pageSize = b.pageSize);
-  b.sig && (d.sig = b.sig);wx.request({ url: c.serviceName + "/cpoint/datasearch/polygon", data: d, method: "GET", header: { "content-type": "application/json" }, success: function success(e) {(e = e.data) && e.status && "1" === e.status && 0 === e.code ? a.success(e.data) : a.fail({ errCode: "0", errMsg: e });}, fail: function fail(e) {a.fail({ errCode: "0", errMsg: e.errMsg || "" });} });};
-AMapWX.prototype.getMEaroundSearch = function (a) {if (!a.options) return a.fail({ errCode: "0", errMsg: "\u7F3A\u5C11\u5FC5\u8981\u53C2\u6570" });var b = a.options,c = this.MeRequestConfig,d = { key: c.key, s: "rsx", platform: "WXJS", appname: a.key, sdkversion: "1.2.0", logversion: "2.0" };b.layerId && (d.layerId = b.layerId);b.keywords && (d.keywords = b.keywords);b.center && (d.center = b.center);b.radius && (d.radius = b.radius);b.filter && (d.filter = b.filter);b.sortrule && (d.sortrule = b.sortrule);b.pageNum && (d.pageNum = b.pageNum);b.pageSize && (
-  d.pageSize = b.pageSize);b.sig && (d.sig = b.sig);wx.request({ url: c.serviceName + "/cpoint/datasearch/around", data: d, method: "GET", header: { "content-type": "application/json" }, success: function success(e) {(e = e.data) && e.status && "1" === e.status && 0 === e.code ? a.success(e.data) : a.fail({ errCode: "0", errMsg: e });}, fail: function fail(e) {a.fail({ errCode: "0", errMsg: e.errMsg || "" });} });};
-AMapWX.prototype.getGeo = function (a) {var b = this.requestConfig,c = a.options;b = { key: this.key, extensions: "all", s: b.s, platform: b.platform, appname: this.key, sdkversion: b.sdkversion, logversion: b.logversion };c.address && (b.address = c.address);c.city && (b.city = c.city);c.batch && (b.batch = c.batch);c.sig && (b.sig = c.sig);wx.request({ url: "https://restapi.amap.com/v3/geocode/geo", data: b, method: "GET", header: { "content-type": "application/json" }, success: function success(d) {(d = d.data) && d.status && "1" === d.status ? a.success(d) : a.fail({ errCode: "0",
-        errMsg: d });}, fail: function fail(d) {a.fail({ errCode: "0", errMsg: d.errMsg || "" });} });};
-AMapWX.prototype.getRegeo = function (a) {function b(d) {var e = c.requestConfig;wx.request({ url: "https://restapi.amap.com/v3/geocode/regeo", data: { key: c.key, location: d, extensions: "all", s: e.s, platform: e.platform, appname: c.key, sdkversion: e.sdkversion, logversion: e.logversion }, method: "GET", header: { "content-type": "application/json" }, success: function success(g) {if (g.data.status && "1" == g.data.status) {g = g.data.regeocode;var h = g.addressComponent,f = [],k = g.roads[0].name + "\u9644\u8FD1",m = d.split(",")[0],n = d.split(",")[1];if (g.pois &&
-          g.pois[0]) {k = g.pois[0].name + "\u9644\u8FD1";var l = g.pois[0].location;l && (m = parseFloat(l.split(",")[0]), n = parseFloat(l.split(",")[1]));}h.provice && f.push(h.provice);h.city && f.push(h.city);h.district && f.push(h.district);h.streetNumber && h.streetNumber.street && h.streetNumber.number ? (f.push(h.streetNumber.street), f.push(h.streetNumber.number)) : f.push(g.roads[0].name);f = f.join("");a.success([{ iconPath: a.iconPath, width: a.iconWidth, height: a.iconHeight, name: f, desc: k, longitude: m, latitude: n, id: 0, regeocodeData: g }]);} else a.fail({ errCode: g.data.infocode,
-          errMsg: g.data.info });}, fail: function fail(g) {a.fail({ errCode: "0", errMsg: g.errMsg || "" });} });}var c = this;a.location ? b(a.location) : c.getWxLocation(a, function (d) {b(d);});};
-AMapWX.prototype.getWeather = function (a) {function b(g) {var h = "base";a.type && "forecast" == a.type && (h = "all");wx.request({ url: "https://restapi.amap.com/v3/weather/weatherInfo", data: { key: d.key, city: g, extensions: h, s: e.s, platform: e.platform, appname: d.key, sdkversion: e.sdkversion, logversion: e.logversion }, method: "GET", header: { "content-type": "application/json" }, success: function success(f) {if (f.data.status && "1" == f.data.status) {if (f.data.lives) {if ((f = f.data.lives) && 0 < f.length) {f = f[0];var k = { city: { text: "\u57CE\u5E02", data: f.city },
-                weather: { text: "\u5929\u6C14", data: f.weather }, temperature: { text: "\u6E29\u5EA6", data: f.temperature }, winddirection: { text: "\u98CE\u5411", data: f.winddirection + "\u98CE" }, windpower: { text: "\u98CE\u529B", data: f.windpower + "\u7EA7" }, humidity: { text: "\u6E7F\u5EA6", data: f.humidity + "%" } };k.liveData = f;a.success(k);}} else f.data.forecasts && f.data.forecasts[0] && a.success({ forecast: f.data.forecasts[0] });} else a.fail({ errCode: f.data.infocode, errMsg: f.data.info });}, fail: function fail(f) {a.fail({ errCode: "0", errMsg: f.errMsg || "" });} });}
-  function c(g) {wx.request({ url: "https://restapi.amap.com/v3/geocode/regeo", data: { key: d.key, location: g, extensions: "all", s: e.s, platform: e.platform, appname: d.key, sdkversion: e.sdkversion, logversion: e.logversion }, method: "GET", header: { "content-type": "application/json" }, success: function success(h) {if (h.data.status && "1" == h.data.status) {h = h.data.regeocode;if (h.addressComponent) var f = h.addressComponent.adcode;else h.aois && 0 < h.aois.length && (f = h.aois[0].adcode);b(f);} else a.fail({ errCode: h.data.infocode, errMsg: h.data.info });},
-      fail: function fail(h) {a.fail({ errCode: "0", errMsg: h.errMsg || "" });} });}var d = this,e = d.requestConfig;a.city ? b(a.city) : d.getWxLocation(a, function (g) {c(g);});};
-AMapWX.prototype.getPoiAround = function (a) {function b(e) {e = { key: c.key, location: e, s: d.s, platform: d.platform, appname: c.key, sdkversion: d.sdkversion, logversion: d.logversion };a.querytypes && (e.types = a.querytypes);a.querykeywords && (e.keywords = a.querykeywords);wx.request({ url: "https://restapi.amap.com/v3/place/around", data: e, method: "GET", header: { "content-type": "application/json" }, success: function success(g) {if (g.data.status && "1" == g.data.status) {if ((g = g.data) && g.pois) {for (var h = [], f = 0; f < g.pois.length; f++) {var k = 0 ==
-              f ? a.iconPathSelected : a.iconPath;h.push({ latitude: parseFloat(g.pois[f].location.split(",")[1]), longitude: parseFloat(g.pois[f].location.split(",")[0]), iconPath: k, width: 22, height: 32, id: f, name: g.pois[f].name, address: g.pois[f].address });}a.success({ markers: h, poisData: g.pois });}} else a.fail({ errCode: g.data.infocode, errMsg: g.data.info });}, fail: function fail(g) {a.fail({ errCode: "0", errMsg: g.errMsg || "" });} });}var c = this,d = c.requestConfig;a.location ? b(a.location) : c.getWxLocation(a, function (e) {b(e);});};
-AMapWX.prototype.getStaticmap = function (a) {function b(e) {c.push("location=" + e);a.zoom && c.push("zoom=" + a.zoom);a.size && c.push("size=" + a.size);a.scale && c.push("scale=" + a.scale);a.markers && c.push("markers=" + a.markers);a.labels && c.push("labels=" + a.labels);a.paths && c.push("paths=" + a.paths);a.traffic && c.push("traffic=" + a.traffic);e = "https://restapi.amap.com/v3/staticmap?" + c.join("&");a.success({ url: e });}var c = [];c.push("key=" + this.key);var d = this.requestConfig;c.push("s=" + d.s);c.push("platform=" + d.platform);
-  c.push("appname=" + d.appname);c.push("sdkversion=" + d.sdkversion);c.push("logversion=" + d.logversion);a.location ? b(a.location) : this.getWxLocation(a, function (e) {b(e);});};
-AMapWX.prototype.getInputtips = function (a) {var b = Object.assign({}, this.requestConfig);a.location && (b.location = a.location);a.keywords && (b.keywords = a.keywords);a.type && (b.type = a.type);a.city && (b.city = a.city);a.citylimit && (b.citylimit = a.citylimit);wx.request({ url: "https://restapi.amap.com/v3/assistant/inputtips", data: b, method: "GET", header: { "content-type": "application/json" }, success: function success(c) {c && c.data && c.data.tips && a.success({ tips: c.data.tips });}, fail: function fail(c) {a.fail({ errCode: "0", errMsg: c.errMsg ||
-        "" });} });};
-AMapWX.prototype.getDrivingRoute = function (a) {var b = Object.assign({}, this.requestConfig);a.origin && (b.origin = a.origin);a.destination && (b.destination = a.destination);a.strategy && (b.strategy = a.strategy);a.waypoints && (b.waypoints = a.waypoints);a.avoidpolygons && (b.avoidpolygons = a.avoidpolygons);a.avoidroad && (b.avoidroad = a.avoidroad);wx.request({ url: "https://restapi.amap.com/v3/direction/driving", data: b, method: "GET", header: { "content-type": "application/json" }, success: function success(c) {c && c.data && c.data.route && a.success({ paths: c.data.route.paths,
-        taxi_cost: c.data.route.taxi_cost || "" });}, fail: function fail(c) {a.fail({ errCode: "0", errMsg: c.errMsg || "" });} });};
-AMapWX.prototype.getWalkingRoute = function (a) {var b = Object.assign({}, this.requestConfig);a.origin && (b.origin = a.origin);a.destination && (b.destination = a.destination);wx.request({ url: "https://restapi.amap.com/v3/direction/walking", data: b, method: "GET", header: { "content-type": "application/json" }, success: function success(c) {c && c.data && c.data.route && a.success({ paths: c.data.route.paths });}, fail: function fail(c) {a.fail({ errCode: "0", errMsg: c.errMsg || "" });} });};
-AMapWX.prototype.getTransitRoute = function (a) {var b = Object.assign({}, this.requestConfig);a.origin && (b.origin = a.origin);a.destination && (b.destination = a.destination);a.strategy && (b.strategy = a.strategy);a.city && (b.city = a.city);a.cityd && (b.cityd = a.cityd);wx.request({ url: "https://restapi.amap.com/v3/direction/transit/integrated", data: b, method: "GET", header: { "content-type": "application/json" }, success: function success(c) {c && c.data && c.data.route && (c = c.data.route, a.success({ distance: c.distance || "", taxi_cost: c.taxi_cost ||
-        "", transits: c.transits }));}, fail: function fail(c) {a.fail({ errCode: "0", errMsg: c.errMsg || "" });} });};
-AMapWX.prototype.getRidingRoute = function (a) {var b = Object.assign({}, this.requestConfig);a.origin && (b.origin = a.origin);a.destination && (b.destination = a.destination);wx.request({ url: "https://restapi.amap.com/v3/direction/riding", data: b, method: "GET", header: { "content-type": "application/json" }, success: function success(c) {c && c.data && c.data.route && a.success({ paths: c.data.route.paths });}, fail: function fail(c) {a.fail({ errCode: "0", errMsg: c.errMsg || "" });} });};module.exports.AMapWX = AMapWX;
-
-/***/ }),
-
-/***/ 2:
+/* 2 */
 /*!******************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js ***!
   \******************************************************************************************/
@@ -7502,7 +7331,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"VUE_APP_NAME":"SkinFood","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_NAME":"SkinFood","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -7523,14 +7352,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"VUE_APP_NAME":"SkinFood","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"SkinFood","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"VUE_APP_NAME":"SkinFood","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"SkinFood","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -7616,7 +7445,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"VUE_APP_NAME":"SkinFood","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"SkinFood","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -8022,8 +7851,7 @@ internalMixin(Vue);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../webpack/buildin/global.js */ 3)))
 
 /***/ }),
-
-/***/ 3:
+/* 3 */
 /*!***********************************!*\
   !*** (webpack)/buildin/global.js ***!
   \***********************************/
@@ -8053,8 +7881,156 @@ module.exports = g;
 
 
 /***/ }),
+/* 4 */
+/*!***************************************!*\
+  !*** E:/SkinFood/SkinFood/pages.json ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-/***/ 34:
+
+
+/***/ }),
+/* 5 */,
+/* 6 */,
+/* 7 */,
+/* 8 */,
+/* 9 */,
+/* 10 */
+/*!**********************************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js ***!
+  \**********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return normalizeComponent; });
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+function normalizeComponent (
+  scriptExports,
+  render,
+  staticRenderFns,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier, /* server only */
+  shadowMode, /* vue-cli only */
+  components, // fixed by xxxxxx auto components
+  renderjs // fixed by xxxxxx renderjs
+) {
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // fixed by xxxxxx auto components
+  if (components) {
+    if (!options.components) {
+      options.components = {}
+    }
+    var hasOwn = Object.prototype.hasOwnProperty
+    for (var name in components) {
+      if (hasOwn.call(components, name) && !hasOwn.call(options.components, name)) {
+        options.components[name] = components[name]
+      }
+    }
+  }
+  // fixed by xxxxxx renderjs
+  if (renderjs) {
+    (renderjs.beforeCreate || (renderjs.beforeCreate = [])).unshift(function() {
+      this[renderjs.__module] = this
+    });
+    (options.mixins || (options.mixins = [])).push(renderjs)
+  }
+
+  // render functions
+  if (render) {
+    options.render = render
+    options.staticRenderFns = staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = 'data-v-' + scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = shadowMode
+      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
+      : injectStyles
+  }
+
+  if (hook) {
+    if (options.functional) {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functioal component in vue file
+      var originalRender = options.render
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return originalRender(h, context)
+      }
+    } else {
+      // inject component registration as beforeCreate hook
+      var existing = options.beforeCreate
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    }
+  }
+
+  return {
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+/* 11 */,
+/* 12 */,
+/* 13 */,
+/* 14 */,
+/* 15 */,
+/* 16 */,
+/* 17 */
 /*!*******************************************************!*\
   !*** E:/SkinFood/SkinFood/static/common/network.json ***!
   \*******************************************************/
@@ -8064,17 +8040,45 @@ module.exports = g;
 module.exports = JSON.parse("{\"result\":{\"data\":[{\"navImgList\":[{\"id\":\"1\",\"title\":\"美食\",\"src\":\"../../static/home/navBar/navImg1.png\"},{\"id\":\"2\",\"title\":\"超市便利\",\"src\":\"../../static/home/navBar/navImg2.png\"},{\"id\":\"3\",\"title\":\"水果\",\"src\":\"../../static/home/navBar/navImg3.png\"},{\"id\":\"4\",\"title\":\"送药上门\",\"src\":\"../../static/home/navBar/navImg4.png\"},{\"id\":\"5\",\"title\":\"甜品饮品\",\"src\":\"../../static/home/navBar/navImg5.png\"}],\"navIconList\":[{\"id\":\"1\",\"title\":\"分享赚钱\",\"src\":\"../../static/home/navBar/navIcon1.png\"},{\"id\":\"2\",\"title\":\"买菜\",\"src\":\"../../static/home/navBar/navIcon2.png\"},{\"id\":\"3\",\"title\":\"配送减免\",\"src\":\"../../static/home/navBar/navIcon3.png\"},{\"id\":\"4\",\"title\":\"订了么\",\"src\":\"../../static/home/navBar/navIcon4.png\"},{\"id\":\"5\",\"title\":\"地方美食\",\"src\":\"../../static/home/navBar/navIcon5.png\"}],\"recommendTitles\":[\"津贴优惠\",\"满减优惠\",\"下单返红包\",\"进店领红包\"],\"recommendDetailsList\":[{\"title\":\"富鸽一家\",\"score\":\"4.7\",\"sales\":\"43\",\"time\":\"30\",\"distance\":\"136m\",\"src\":\"../../static/home/recommends/recommendImg1.png\",\"Send\":\"20\",\"ShippingPrice\":\"0.7\",\"oldShippingPrice\":\"4\",\"isDetection\":\"true\",\"discountList\":[\"11减10\",\"30减20\",\"88减28\",\"128减36\"]},{\"title\":\"花氧均衡营养美食(南沙店)\",\"score\":\"4.0\",\"sales\":\"138\",\"time\":\"30\",\"distance\":\"2.2km\",\"src\":\"../../static/home/recommends/recommendImg2.png\",\"Send\":\"20\",\"ShippingPrice\":\"0\",\"oldShippingPrice\":\"4\",\"isDetection\":\"false\",\"discountList\":[\"10减6\",\"100减8\",\"200减16\",\"400减35\",\"500减40\"]},{\"title\":\"鱼别走·酸菜鱼(南沙店)\",\"score\":\"4.6\",\"sales\":\"1518\",\"time\":\"30\",\"distance\":\"3.1km\",\"src\":\"../../static/home/recommends/recommendImg3.png\",\"Send\":\"0\",\"ShippingPrice\":\"0\",\"oldShippingPrice\":\"5\",\"isDetection\":\"false\",\"discountList\":[\"20减19\",\"52减23\",\"80减36\",\"110减46\",\"0.1元特价\"]},{\"title\":\"木桶饭(金洲店)\",\"score\":\"4.4\",\"sales\":\"258\",\"time\":\"36\",\"distance\":\"2.7km\",\"src\":\"../../static/home/recommends/recommendImg4.png\",\"Send\":\"20\",\"ShippingPrice\":\"0\",\"oldShippingPrice\":\"3\",\"isDetection\":\"true\",\"discountList\":[\"36减5\",\"50减6\",\"2元店铺红包\"]},{\"title\":\"港堡汉堡·炸鸡(金洲店)\",\"score\":\"4.7\",\"sales\":\"2459\",\"time\":\"38\",\"distance\":\"3.1km\",\"src\":\"../../static/home/recommends/recommendImg5.png\",\"Send\":\"20\",\"ShippingPrice\":\"0.9\",\"oldShippingPrice\":\"4\",\"isDetection\":\"false\",\"discountList\":[\"35减19\",\"46减27\",\"66减34\",\"85减39\"]},{\"title\":\"吃湘喝辣快餐\",\"score\":\"4.5\",\"sales\":\"364\",\"time\":\"30\",\"distance\":\"2.4km\",\"src\":\"../../static/home/recommends/recommendImg6.png\",\"Send\":\"15\",\"ShippingPrice\":\"0\",\"oldShippingPrice\":\"3\",\"isDetection\":\"true\",\"discountList\":[\"30减8\",\"50减10\",\"2元店铺红包\"]},{\"title\":\"排骨米饭\",\"score\":\"4.1\",\"sales\":\"913\",\"time\":\"30\",\"distance\":\"2.5km\",\"src\":\"../../static/home/recommends/recommendImg7.png\",\"Send\":\"15\",\"ShippingPrice\":\"0\",\"oldShippingPrice\":\"3\",\"isDetection\":\"false\",\"discountList\":[\"25减8\",\"38减12\",\"80减23\",\"100减26\"]}]}]}}");
 
 /***/ }),
-
-/***/ 4:
-/*!***************************************!*\
-  !*** E:/SkinFood/SkinFood/pages.json ***!
-  \***************************************/
+/* 18 */
+/*!**************************************************!*\
+  !*** E:/SkinFood/SkinFood/common/amap-wx.130.js ***!
+  \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-
+function AMapWX(a) {this.key = a.key;this.requestConfig = { key: a.key, s: "rsx", platform: "WXJS", appname: a.key, sdkversion: "1.2.0", logversion: "2.0" };this.MeRequestConfig = { key: a.key, serviceName: "https://restapi.amap.com/rest/me" };}
+AMapWX.prototype.getWxLocation = function (a, b) {wx.getLocation({ type: "gcj02", success: function success(c) {c = c.longitude + "," + c.latitude;wx.setStorage({ key: "userLocation", data: c });b(c);}, fail: function fail(c) {wx.getStorage({ key: "userLocation", success: function success(d) {d.data && b(d.data);} });a.fail({ errCode: "0", errMsg: c.errMsg || "" });} });};
+AMapWX.prototype.getMEKeywordsSearch = function (a) {if (!a.options) return a.fail({ errCode: "0", errMsg: "\u7F3A\u5C11\u5FC5\u8981\u53C2\u6570" });var b = a.options,c = this.MeRequestConfig,d = { key: c.key, s: "rsx", platform: "WXJS", appname: a.key, sdkversion: "1.2.0", logversion: "2.0" };b.layerId && (d.layerId = b.layerId);b.keywords && (d.keywords = b.keywords);b.city && (d.city = b.city);b.filter && (d.filter = b.filter);b.sortrule && (d.sortrule = b.sortrule);b.pageNum && (d.pageNum = b.pageNum);b.pageSize && (d.pageSize = b.pageSize);b.sig && (d.sig =
+  b.sig);wx.request({ url: c.serviceName + "/cpoint/datasearch/local", data: d, method: "GET", header: { "content-type": "application/json" }, success: function success(e) {(e = e.data) && e.status && "1" === e.status && 0 === e.code ? a.success(e.data) : a.fail({ errCode: "0", errMsg: e });}, fail: function fail(e) {a.fail({ errCode: "0", errMsg: e.errMsg || "" });} });};
+AMapWX.prototype.getMEIdSearch = function (a) {if (!a.options) return a.fail({ errCode: "0", errMsg: "\u7F3A\u5C11\u5FC5\u8981\u53C2\u6570" });var b = a.options,c = this.MeRequestConfig,d = { key: c.key, s: "rsx", platform: "WXJS", appname: a.key, sdkversion: "1.2.0", logversion: "2.0" };b.layerId && (d.layerId = b.layerId);b.id && (d.id = b.id);b.sig && (d.sig = b.sig);wx.request({ url: c.serviceName + "/cpoint/datasearch/id", data: d, method: "GET", header: { "content-type": "application/json" }, success: function success(e) {(e = e.data) && e.status && "1" === e.status &&
+      0 === e.code ? a.success(e.data) : a.fail({ errCode: "0", errMsg: e });}, fail: function fail(e) {a.fail({ errCode: "0", errMsg: e.errMsg || "" });} });};
+AMapWX.prototype.getMEPolygonSearch = function (a) {if (!a.options) return a.fail({ errCode: "0", errMsg: "\u7F3A\u5C11\u5FC5\u8981\u53C2\u6570" });var b = a.options,c = this.MeRequestConfig,d = { key: c.key, s: "rsx", platform: "WXJS", appname: a.key, sdkversion: "1.2.0", logversion: "2.0" };b.layerId && (d.layerId = b.layerId);b.keywords && (d.keywords = b.keywords);b.polygon && (d.polygon = b.polygon);b.filter && (d.filter = b.filter);b.sortrule && (d.sortrule = b.sortrule);b.pageNum && (d.pageNum = b.pageNum);b.pageSize && (d.pageSize = b.pageSize);
+  b.sig && (d.sig = b.sig);wx.request({ url: c.serviceName + "/cpoint/datasearch/polygon", data: d, method: "GET", header: { "content-type": "application/json" }, success: function success(e) {(e = e.data) && e.status && "1" === e.status && 0 === e.code ? a.success(e.data) : a.fail({ errCode: "0", errMsg: e });}, fail: function fail(e) {a.fail({ errCode: "0", errMsg: e.errMsg || "" });} });};
+AMapWX.prototype.getMEaroundSearch = function (a) {if (!a.options) return a.fail({ errCode: "0", errMsg: "\u7F3A\u5C11\u5FC5\u8981\u53C2\u6570" });var b = a.options,c = this.MeRequestConfig,d = { key: c.key, s: "rsx", platform: "WXJS", appname: a.key, sdkversion: "1.2.0", logversion: "2.0" };b.layerId && (d.layerId = b.layerId);b.keywords && (d.keywords = b.keywords);b.center && (d.center = b.center);b.radius && (d.radius = b.radius);b.filter && (d.filter = b.filter);b.sortrule && (d.sortrule = b.sortrule);b.pageNum && (d.pageNum = b.pageNum);b.pageSize && (
+  d.pageSize = b.pageSize);b.sig && (d.sig = b.sig);wx.request({ url: c.serviceName + "/cpoint/datasearch/around", data: d, method: "GET", header: { "content-type": "application/json" }, success: function success(e) {(e = e.data) && e.status && "1" === e.status && 0 === e.code ? a.success(e.data) : a.fail({ errCode: "0", errMsg: e });}, fail: function fail(e) {a.fail({ errCode: "0", errMsg: e.errMsg || "" });} });};
+AMapWX.prototype.getGeo = function (a) {var b = this.requestConfig,c = a.options;b = { key: this.key, extensions: "all", s: b.s, platform: b.platform, appname: this.key, sdkversion: b.sdkversion, logversion: b.logversion };c.address && (b.address = c.address);c.city && (b.city = c.city);c.batch && (b.batch = c.batch);c.sig && (b.sig = c.sig);wx.request({ url: "https://restapi.amap.com/v3/geocode/geo", data: b, method: "GET", header: { "content-type": "application/json" }, success: function success(d) {(d = d.data) && d.status && "1" === d.status ? a.success(d) : a.fail({ errCode: "0",
+        errMsg: d });}, fail: function fail(d) {a.fail({ errCode: "0", errMsg: d.errMsg || "" });} });};
+AMapWX.prototype.getRegeo = function (a) {function b(d) {var e = c.requestConfig;wx.request({ url: "https://restapi.amap.com/v3/geocode/regeo", data: { key: c.key, location: d, extensions: "all", s: e.s, platform: e.platform, appname: c.key, sdkversion: e.sdkversion, logversion: e.logversion }, method: "GET", header: { "content-type": "application/json" }, success: function success(g) {if (g.data.status && "1" == g.data.status) {g = g.data.regeocode;var h = g.addressComponent,f = [],k = g.roads[0].name + "\u9644\u8FD1",m = d.split(",")[0],n = d.split(",")[1];if (g.pois &&
+          g.pois[0]) {k = g.pois[0].name + "\u9644\u8FD1";var l = g.pois[0].location;l && (m = parseFloat(l.split(",")[0]), n = parseFloat(l.split(",")[1]));}h.provice && f.push(h.provice);h.city && f.push(h.city);h.district && f.push(h.district);h.streetNumber && h.streetNumber.street && h.streetNumber.number ? (f.push(h.streetNumber.street), f.push(h.streetNumber.number)) : f.push(g.roads[0].name);f = f.join("");a.success([{ iconPath: a.iconPath, width: a.iconWidth, height: a.iconHeight, name: f, desc: k, longitude: m, latitude: n, id: 0, regeocodeData: g }]);} else a.fail({ errCode: g.data.infocode,
+          errMsg: g.data.info });}, fail: function fail(g) {a.fail({ errCode: "0", errMsg: g.errMsg || "" });} });}var c = this;a.location ? b(a.location) : c.getWxLocation(a, function (d) {b(d);});};
+AMapWX.prototype.getWeather = function (a) {function b(g) {var h = "base";a.type && "forecast" == a.type && (h = "all");wx.request({ url: "https://restapi.amap.com/v3/weather/weatherInfo", data: { key: d.key, city: g, extensions: h, s: e.s, platform: e.platform, appname: d.key, sdkversion: e.sdkversion, logversion: e.logversion }, method: "GET", header: { "content-type": "application/json" }, success: function success(f) {if (f.data.status && "1" == f.data.status) {if (f.data.lives) {if ((f = f.data.lives) && 0 < f.length) {f = f[0];var k = { city: { text: "\u57CE\u5E02", data: f.city },
+                weather: { text: "\u5929\u6C14", data: f.weather }, temperature: { text: "\u6E29\u5EA6", data: f.temperature }, winddirection: { text: "\u98CE\u5411", data: f.winddirection + "\u98CE" }, windpower: { text: "\u98CE\u529B", data: f.windpower + "\u7EA7" }, humidity: { text: "\u6E7F\u5EA6", data: f.humidity + "%" } };k.liveData = f;a.success(k);}} else f.data.forecasts && f.data.forecasts[0] && a.success({ forecast: f.data.forecasts[0] });} else a.fail({ errCode: f.data.infocode, errMsg: f.data.info });}, fail: function fail(f) {a.fail({ errCode: "0", errMsg: f.errMsg || "" });} });}
+  function c(g) {wx.request({ url: "https://restapi.amap.com/v3/geocode/regeo", data: { key: d.key, location: g, extensions: "all", s: e.s, platform: e.platform, appname: d.key, sdkversion: e.sdkversion, logversion: e.logversion }, method: "GET", header: { "content-type": "application/json" }, success: function success(h) {if (h.data.status && "1" == h.data.status) {h = h.data.regeocode;if (h.addressComponent) var f = h.addressComponent.adcode;else h.aois && 0 < h.aois.length && (f = h.aois[0].adcode);b(f);} else a.fail({ errCode: h.data.infocode, errMsg: h.data.info });},
+      fail: function fail(h) {a.fail({ errCode: "0", errMsg: h.errMsg || "" });} });}var d = this,e = d.requestConfig;a.city ? b(a.city) : d.getWxLocation(a, function (g) {c(g);});};
+AMapWX.prototype.getPoiAround = function (a) {function b(e) {e = { key: c.key, location: e, s: d.s, platform: d.platform, appname: c.key, sdkversion: d.sdkversion, logversion: d.logversion };a.querytypes && (e.types = a.querytypes);a.querykeywords && (e.keywords = a.querykeywords);wx.request({ url: "https://restapi.amap.com/v3/place/around", data: e, method: "GET", header: { "content-type": "application/json" }, success: function success(g) {if (g.data.status && "1" == g.data.status) {if ((g = g.data) && g.pois) {for (var h = [], f = 0; f < g.pois.length; f++) {var k = 0 ==
+              f ? a.iconPathSelected : a.iconPath;h.push({ latitude: parseFloat(g.pois[f].location.split(",")[1]), longitude: parseFloat(g.pois[f].location.split(",")[0]), iconPath: k, width: 22, height: 32, id: f, name: g.pois[f].name, address: g.pois[f].address });}a.success({ markers: h, poisData: g.pois });}} else a.fail({ errCode: g.data.infocode, errMsg: g.data.info });}, fail: function fail(g) {a.fail({ errCode: "0", errMsg: g.errMsg || "" });} });}var c = this,d = c.requestConfig;a.location ? b(a.location) : c.getWxLocation(a, function (e) {b(e);});};
+AMapWX.prototype.getStaticmap = function (a) {function b(e) {c.push("location=" + e);a.zoom && c.push("zoom=" + a.zoom);a.size && c.push("size=" + a.size);a.scale && c.push("scale=" + a.scale);a.markers && c.push("markers=" + a.markers);a.labels && c.push("labels=" + a.labels);a.paths && c.push("paths=" + a.paths);a.traffic && c.push("traffic=" + a.traffic);e = "https://restapi.amap.com/v3/staticmap?" + c.join("&");a.success({ url: e });}var c = [];c.push("key=" + this.key);var d = this.requestConfig;c.push("s=" + d.s);c.push("platform=" + d.platform);
+  c.push("appname=" + d.appname);c.push("sdkversion=" + d.sdkversion);c.push("logversion=" + d.logversion);a.location ? b(a.location) : this.getWxLocation(a, function (e) {b(e);});};
+AMapWX.prototype.getInputtips = function (a) {var b = Object.assign({}, this.requestConfig);a.location && (b.location = a.location);a.keywords && (b.keywords = a.keywords);a.type && (b.type = a.type);a.city && (b.city = a.city);a.citylimit && (b.citylimit = a.citylimit);wx.request({ url: "https://restapi.amap.com/v3/assistant/inputtips", data: b, method: "GET", header: { "content-type": "application/json" }, success: function success(c) {c && c.data && c.data.tips && a.success({ tips: c.data.tips });}, fail: function fail(c) {a.fail({ errCode: "0", errMsg: c.errMsg ||
+        "" });} });};
+AMapWX.prototype.getDrivingRoute = function (a) {var b = Object.assign({}, this.requestConfig);a.origin && (b.origin = a.origin);a.destination && (b.destination = a.destination);a.strategy && (b.strategy = a.strategy);a.waypoints && (b.waypoints = a.waypoints);a.avoidpolygons && (b.avoidpolygons = a.avoidpolygons);a.avoidroad && (b.avoidroad = a.avoidroad);wx.request({ url: "https://restapi.amap.com/v3/direction/driving", data: b, method: "GET", header: { "content-type": "application/json" }, success: function success(c) {c && c.data && c.data.route && a.success({ paths: c.data.route.paths,
+        taxi_cost: c.data.route.taxi_cost || "" });}, fail: function fail(c) {a.fail({ errCode: "0", errMsg: c.errMsg || "" });} });};
+AMapWX.prototype.getWalkingRoute = function (a) {var b = Object.assign({}, this.requestConfig);a.origin && (b.origin = a.origin);a.destination && (b.destination = a.destination);wx.request({ url: "https://restapi.amap.com/v3/direction/walking", data: b, method: "GET", header: { "content-type": "application/json" }, success: function success(c) {c && c.data && c.data.route && a.success({ paths: c.data.route.paths });}, fail: function fail(c) {a.fail({ errCode: "0", errMsg: c.errMsg || "" });} });};
+AMapWX.prototype.getTransitRoute = function (a) {var b = Object.assign({}, this.requestConfig);a.origin && (b.origin = a.origin);a.destination && (b.destination = a.destination);a.strategy && (b.strategy = a.strategy);a.city && (b.city = a.city);a.cityd && (b.cityd = a.cityd);wx.request({ url: "https://restapi.amap.com/v3/direction/transit/integrated", data: b, method: "GET", header: { "content-type": "application/json" }, success: function success(c) {c && c.data && c.data.route && (c = c.data.route, a.success({ distance: c.distance || "", taxi_cost: c.taxi_cost ||
+        "", transits: c.transits }));}, fail: function fail(c) {a.fail({ errCode: "0", errMsg: c.errMsg || "" });} });};
+AMapWX.prototype.getRidingRoute = function (a) {var b = Object.assign({}, this.requestConfig);a.origin && (b.origin = a.origin);a.destination && (b.destination = a.destination);wx.request({ url: "https://restapi.amap.com/v3/direction/riding", data: b, method: "GET", header: { "content-type": "application/json" }, success: function success(c) {c && c.data && c.data.route && a.success({ paths: c.data.route.paths });}, fail: function fail(c) {a.fail({ errCode: "0", errMsg: c.errMsg || "" });} });};module.exports.AMapWX = AMapWX;
 
 /***/ })
-
-}]);
+]]);
 //# sourceMappingURL=../../.sourcemap/mp-weixin/common/vendor.js.map

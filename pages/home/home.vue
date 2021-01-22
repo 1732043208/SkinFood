@@ -172,6 +172,18 @@
 			// #ifdef MP-WEIXIN
 			// 获取json数据
 			this.getData()
+
+			this.amapPlugin = new amap.AMapWX({
+				key: this.key
+			});
+			//获取当前位置(小程序)
+			this.getRegeo();
+
+			// #endif
+
+		},
+		onReady() {
+
 			// 监听筛选组件距离顶部的距离
 			const query = uni.createSelectorQuery()
 			query.select('.suggestBox').boundingClientRect((res) => {
@@ -179,15 +191,8 @@
 			})
 			query.exec((res) => {
 				this.menutop = res[0].top;
+				console.log('asdasdas' + this.menutop)
 			})
-
-			this.amapPlugin = new amap.AMapWX({
-				key: this.key
-			});
-			//获取当前位置(小程序)
-			this.getRegeo();
-			// #endif
-
 		},
 
 		methods: {
@@ -217,8 +222,9 @@
 				// json假数据模拟网络请求
 				this.navImgList = json.result.data["0"].navImgList;
 				this.navIconList = json.result.data["0"].navIconList;
-				this.recommendTitles=json.result.data["0"].recommendTitles;
-				this.recommendDetailsList=json.result.data["0"].recommendDetailsList;
+				this.recommendTitles = json.result.data["0"].recommendTitles;
+				this.recommendDetailsList = json.result.data["0"].recommendDetailsList;
+
 			}
 			// #endif
 
@@ -233,15 +239,7 @@
 					this.isChange = false
 				}
 			},
-			//监听“附近推荐”是否吸顶
-			isFixedFunc() {
-				// 75是吸顶盒子的高度
-				if (this.rect > (this.menutop - 75)) {
-					this.isfixed = true
-				} else {
-					this.isfixed = false
-				}
-			}
+
 			// #endif
 
 		},
@@ -249,7 +247,14 @@
 			// console.log(e.scrollTop)
 			//获取当前高度与顶部的距离
 			this.rect = e.scrollTop;
-			console.log(this.rect)
+			console.log('我是rect----------' + this.rect)
+
+			// 75是吸顶盒子的高度
+			if (this.rect > (this.menutop - 75)) {
+				this.isfixed = true
+			} else {
+				this.isfixed = false
+			}
 		}
 	}
 </script>
