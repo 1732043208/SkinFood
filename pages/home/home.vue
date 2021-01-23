@@ -1,5 +1,8 @@
 <template>
-	<view>
+	<view style="position: relative;" @touchstart="touchStart" @touchend="touchEnd">
+		<view class="cart" :class="{'isCartShow':!isSlide}" v-if="!isSlide">
+			<image src="../../static/home/cart.png" mode="widthFix" style="width: 70%;height: 70%;vertical-align: middle;"></image>
+		</view>
 		<!-- 微信小程序运行代码 -->
 		<!-- #ifdef MP-WEIXIN -->
 		<view class="headBox" v-if="!isChange">
@@ -165,7 +168,10 @@
 				addressName: '',
 				currentIndex: 0,
 				isGetLocation: false,
-
+				// 开始与结束标识
+				isSlide: false,
+				// 监听手指是否触摸着屏幕没放开
+				isTouch: false
 			}
 		},
 		onLoad() {
@@ -183,7 +189,6 @@
 
 		},
 		onReady() {
-
 			// 监听筛选组件距离顶部的距离
 			const query = uni.createSelectorQuery()
 			query.select('.suggestBox').boundingClientRect((res) => {
@@ -196,6 +201,13 @@
 		},
 
 		methods: {
+			touchStart() {
+				this.isTouch = true
+			},
+			touchEnd() {
+				this.isTouch = false
+				this.isSlide = false
+			},
 			// #ifdef MP-WEIXIN
 			getRegeo() {
 				uni.showLoading({
@@ -247,7 +259,7 @@
 			// console.log(e.scrollTop)
 			//获取当前高度与顶部的距离
 			this.rect = e.scrollTop;
-			console.log('我是rect----------' + this.rect)
+			// console.log('我是rect----------' + this.rect)
 
 			// 75是吸顶盒子的高度
 			if (this.rect > (this.menutop - 75)) {
@@ -255,12 +267,57 @@
 			} else {
 				this.isfixed = false
 			}
+
+			//判断滑动是否已经结束
+			clearTimeout(time)
+			this.isSlide = true
+			let time = setTimeout(() => {
+				console.log('结束滚动')
+				if (!this.isTouch) {
+					this.isSlide = false
+				}
+
+			}, 100)
+
 		}
 	}
 </script>
 
 <style scoped lang="less">
 	@import url("../../static/common/uni.less");
+
+	@keyframes move {
+
+		/*定义关键帧*/
+		0% {
+			right: -100rpx;
+		}
+
+		100% {
+			right: 16rpx;
+		}
+	}
+
+	.isCartShow {
+		animation-name: move;
+		animation-duration: 1s;
+	}
+
+	;
+	;
+
+	.cart {
+		width: 100rpx;
+		height: 100rpx;
+		border-radius: 100rpx;
+		position: fixed;
+		bottom: 30rpx;
+		right: 16rpx;
+		background-color: white;
+		text-align: center;
+		line-height: 100rpx;
+		box-shadow: 0px 4px 20px 0px rgba(8, 8, 8, 0.1);
+	}
 
 	// 微信小程序执行的代码
 	/* #ifdef MP-WEIXIN */

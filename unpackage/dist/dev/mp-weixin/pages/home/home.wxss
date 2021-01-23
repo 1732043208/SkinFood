@@ -11,6 +11,44 @@
   width: 86rpx;
   height: 86rpx;
 }
+@-webkit-keyframes move-data-v-92bb8f34 {
+  /*定义关键帧*/
+0% {
+    right: -100rpx;
+}
+100% {
+    right: 16rpx;
+}
+}
+@keyframes move-data-v-92bb8f34 {
+  /*定义关键帧*/
+0% {
+    right: -100rpx;
+}
+100% {
+    right: 16rpx;
+}
+}
+.isCartShow.data-v-92bb8f34 {
+  -webkit-animation-name: move-data-v-92bb8f34;
+          animation-name: move-data-v-92bb8f34;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+}
+.cart.data-v-92bb8f34 {
+  width: 100rpx;
+  height: 100rpx;
+  -webkit-border-radius: 100rpx;
+          border-radius: 100rpx;
+  position: fixed;
+  bottom: 30rpx;
+  right: 16rpx;
+  background-color: white;
+  text-align: center;
+  line-height: 100rpx;
+  -webkit-box-shadow: 0px 4px 20px 0px rgba(8, 8, 8, 0.1);
+          box-shadow: 0px 4px 20px 0px rgba(8, 8, 8, 0.1);
+}
 .is_fixed.data-v-92bb8f34 {
   position: fixed;
   left: 0;
