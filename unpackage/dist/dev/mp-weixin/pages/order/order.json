@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "s-tabs": "/components/s-tabs/index",
+    "s-tab": "/components/s-tab/index"
+  }
 }

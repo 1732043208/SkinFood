@@ -1,6 +1,6 @@
 <template>
 	<view style="position: relative;" @touchstart="touchStart" @touchend="touchEnd">
-		<view class="cart" :class="{'isCartShow':!isSlide}" v-if="!isSlide">
+		<view class="cart" :class="{'isCartShow':!isSlide}" v-if="!isSlide"@click="pushCart">
 			<image src="../../static/home/cart.png" mode="widthFix" style="width: 70%;height: 70%;vertical-align: middle;"></image>
 		</view>
 		<!-- 微信小程序运行代码 -->
@@ -237,6 +237,11 @@
 				this.recommendTitles = json.result.data["0"].recommendTitles;
 				this.recommendDetailsList = json.result.data["0"].recommendDetailsList;
 
+			},
+			pushCart(){
+				uni.switchTab({
+				    url: '../order/order'
+				});
 			}
 			// #endif
 

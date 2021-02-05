@@ -1,1 +1,1 @@
-<view>我的</view>
+<view class="data-v-dcbcfe34"><view class="navBox data-v-dcbcfe34"><text class="data-v-dcbcfe34">皮了么</text></view><view class="headBox data-v-dcbcfe34"><view class="leftBox data-v-dcbcfe34"><open-data class="UserName data-v-dcbcfe34" type="userNickName"></open-data><view class="data-v-dcbcfe34">再忙，也要记得吃饭哟~</view></view><view class="rightBox data-v-dcbcfe34"><button open-type="getUserInfo" class="data-v-dcbcfe34"></button><open-data type="userAvatarUrl" class="data-v-dcbcfe34"></open-data></view></view></view>
