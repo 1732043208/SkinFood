@@ -1,0 +1,34 @@
+.fatherBox.data-v-350e292e {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  height: 120rpx;
+  line-height: 120rpx;
+}
+.fatherBox .leftBox.data-v-350e292e {
+  text-align: center;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+}
+.fatherBox .rightBox.data-v-350e292e {
+  -webkit-box-flex: 4;
+  -webkit-flex: 4;
+          flex: 4;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  border-bottom: 1rpx solid #EBEBEB;
+  font-size: 34rpx;
+}
+.fatherBox .rightBox .Icon.data-v-350e292e {
+  margin-top: 60rpx;
+  margin-right: 20rpx;
+  width: 30rpx;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+

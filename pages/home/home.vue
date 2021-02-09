@@ -308,8 +308,6 @@
 		animation-duration: 1s;
 	}
 
-	;
-	;
 
 	.cart {
 		width: 100rpx;

@@ -1,0 +1,33 @@
+page {
+  background-color: #F7F7F7;
+}
+.navBox {
+  height: 129rpx;
+  background-color: #FB766A;
+  line-height: 150rpx;
+  color: white;
+  padding-left: 30rpx;
+}
+.contentBox {
+  text-align: center;
+  margin-top: 50%;
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+.contentBox .tips {
+  color: #727272;
+  font-size: 30rpx;
+}
+.contentBox .tipsButton {
+  width: 100rpx;
+  height: 40rpx;
+  background-color: #FB766A;
+  padding: 10rpx 24rpx;
+  -webkit-border-radius: 40rpx;
+          border-radius: 40rpx;
+  margin: 40rpx auto;
+  color: white;
+}
+

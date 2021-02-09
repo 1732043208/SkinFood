@@ -1,0 +1,1 @@
+<view class="fatherBox data-v-350e292e"><view class="leftBox data-v-350e292e"><slot name="left"></slot></view><view class="rightBox data-v-350e292e"><slot name="right"></slot><image class="Icon data-v-350e292e" src="../../static/mine/right.png" mode="widthFix"></image></view></view>
