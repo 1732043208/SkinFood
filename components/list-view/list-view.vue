@@ -33,8 +33,8 @@
 <style scoped lang="less">
 	.fatherBox {
 		display: flex;
-		height: 120rpx;
-		line-height: 120rpx;
+		height: 110rpx;
+		line-height: 110rpx;
 
 		.leftBox {
 			text-align: center;
@@ -48,7 +48,7 @@
 			border-bottom: 1rpx solid #EBEBEB;
 			font-size: 34rpx;
 			.Icon{
-				margin-top: 60rpx;
+				margin-top: 55rpx;
 				margin-right: 20rpx;
 				width: 30rpx;
 				transform: translateY(-50%);

@@ -36,8 +36,8 @@
 			<view class="secondBox">
 				<view class="leftBox">
 					<view>点餐提醒</view>
-					<view>已有
-						<text>93331</text>人提醒自己按时吃饭</view>
+					<view style="color: #929292;font-size: 26rpx;">已有
+						<text style="display: inline-block;margin: 0 10rpx;">93331</text>人提醒自己按时吃饭</view>
 				</view>
 				<view class="rightBox">
 					<text>立即开启</text>
@@ -141,11 +141,10 @@
 		height: 200rpx;
 		padding-top: 40rpx;
 		background-image: linear-gradient(#FFFFFF, #F5F5F4, #FFFFFF, #FFFFFF, #FFFFFF, #FFFFFF, #FFFFFF, );
-
+margin-top: 30rpx;
 		.firstBox {
-
 			display: flex;
-			margin: 0 20rpx 0 20rpx;
+			margin: 0 20rpx;
 			height: 160rpx;
 
 			.leftBox {
@@ -204,10 +203,34 @@
 		}
 
 		.secondBox {
+			position: relative;
+			margin: 40rpx 24rpx 10rpx 24rpx;
+			padding: 20rpx 14rpx;
+			border-radius: 22rpx;
 			display: flex;
 			justify-content: space-between;
 			border: 1px solid #DFE3EB;
 			background-image: linear-gradient(to right, #F5F6F7, #FFFFFF);
+box-shadow: 0px 4px 20px 0px rgba(8, 8, 8, 0.1);
+			.rightBox {
+				position: absolute;
+				top: 50%;
+				right: 14rpx;
+				transform: translateY(-50%);
+				background-color: #FB766A;
+				color: white;
+				height: 64rpx;
+				padding: 0 24rpx;
+				border-radius: 10rpx;
+				line-height: 64rpx;
+				font-size: 28rpx;
+			}
+
+			.leftBox {
+				padding-left: 14rpx;
+				
+				font-size: 30rpx;
+			}
 		}
 	}
 </style>
