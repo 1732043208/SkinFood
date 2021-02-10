@@ -6,6 +6,12 @@
 		</view>
 		<!-- #endif -->
 
+		<!-- #ifndef MP-WEIXIN -->
+		<view class="navBox">
+			<text>订单</text>
+			<image src="../../static/cart/search.png" mode="widthFix"></image>
+		</view>
+		<!-- #endif -->
 		<s-tabs effect @change="change" @render="render" activeColor="black" barColor="#FB766A" barHeight=8 barWidth=50>
 			<s-tab v-for="(item,index) in tabList" :title="item" :key="index">
 				<view class="contentBox">
@@ -54,6 +60,7 @@
 		background-color: #F7F7F7;
 	}
 
+	/* #ifdef MP-WEIXIN */
 	.navBox {
 		height: 129rpx;
 		background-color: #FB766A;
@@ -63,13 +70,36 @@
 
 	}
 
+	/* #endif */
+	/* #ifndef MP-WEIXIN */
+	.navBox {
+		height: 129rpx;
+		background-color: #F8F8F8;
+		line-height: 129rpx;
+		padding-left: 30rpx;
+		font-weight: 700;
+		font-size: 36rpx;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		image {
+			width: 60rpx;
+			margin-right: 20rpx;
+		}
+
+		;
+	}
+
+	/* #endif */
+
 	.contentBox {
 		text-align: center;
 		margin-top: 50%;
 		position: absolute;
 		left: 50%;
 		transform: translate(-50%, -50%);
-		
+
 
 		.tips {
 			color: #727272;

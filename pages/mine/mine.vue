@@ -1,4 +1,6 @@
 <template>
+	<!-- #ifdef MP-WEIXIN -->
+	<!-- 微信小程序端代码 -->
 	<view>
 		<view class="navBox"></view>
 		<view class="headBox">
@@ -54,10 +56,12 @@
 						</template>
 					</list-view>
 				</view>
-
+	
 			</view>
 		</view>
 	</view>
+	<!-- #endif -->
+	
 </template>
 
 <script>

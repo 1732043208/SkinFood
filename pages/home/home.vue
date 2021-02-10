@@ -710,6 +710,7 @@
 				margin: 6rpx;
 				line-height: 58rpx;
 				text-align: center;
+				font-size: 30rpx;
 			}
 		}
 	}
