@@ -14,7 +14,6 @@
 
 <script>
 	export default {
-
 		data() {
 			return {
 
@@ -47,7 +46,8 @@
 			justify-content: space-between;
 			border-bottom: 1rpx solid #EBEBEB;
 			font-size: 34rpx;
-			.Icon{
+
+			.Icon {
 				margin-top: 55rpx;
 				margin-right: 20rpx;
 				width: 30rpx;

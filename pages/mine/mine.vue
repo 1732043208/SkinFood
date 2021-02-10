@@ -44,14 +44,17 @@
 				</view>
 			</view>
 			<view v-for="item in listViews" :key="item.id">
-				<list-view>
-					<template #left>
-						<image :src="item.src" mode="widthFix" class="listViewIcon"></image>
-					</template>
-					<template #right>
-						<text>{{item.title}}</text>
-					</template>
-				</list-view>
+				<view @click="funcName(item.title)">
+					<list-view>
+						<template #left>
+							<image :src="item.src" mode="widthFix" class="listViewIcon"></image>
+						</template>
+						<template #right>
+							<text>{{item.title}}</text>
+						</template>
+					</list-view>
+				</view>
+
 			</view>
 		</view>
 	</view>
@@ -92,7 +95,12 @@
 
 		},
 		methods: {
-
+			funcName(title) {
+				uni.showToast({
+					title: '暂无' + title + '页面',
+					icon: 'none'
+				})
+			}
 		}
 	}
 </script>
@@ -141,7 +149,8 @@
 		height: 200rpx;
 		padding-top: 40rpx;
 		background-image: linear-gradient(#FFFFFF, #F5F5F4, #FFFFFF, #FFFFFF, #FFFFFF, #FFFFFF, #FFFFFF, );
-margin-top: 30rpx;
+		margin-top: 30rpx;
+
 		.firstBox {
 			display: flex;
 			margin: 0 20rpx;
@@ -211,7 +220,8 @@ margin-top: 30rpx;
 			justify-content: space-between;
 			border: 1px solid #DFE3EB;
 			background-image: linear-gradient(to right, #F5F6F7, #FFFFFF);
-box-shadow: 0px 4px 20px 0px rgba(8, 8, 8, 0.1);
+			box-shadow: 0px 4px 20px 0px rgba(8, 8, 8, 0.1);
+
 			.rightBox {
 				position: absolute;
 				top: 50%;
@@ -228,7 +238,7 @@ box-shadow: 0px 4px 20px 0px rgba(8, 8, 8, 0.1);
 
 			.leftBox {
 				padding-left: 14rpx;
-				
+
 				font-size: 30rpx;
 			}
 		}

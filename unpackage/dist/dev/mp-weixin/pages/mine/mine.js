@@ -134,7 +134,10 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var ListView = function ListView() {__webpack_require__.e(/*! require.ensure | components/list-view/list-view */ "components/list-view/list-view").then((function () {return resolve(__webpack_require__(/*! ../../components/list-view/list-view.vue */ 51));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var ListView = function ListView() {__webpack_require__.e(/*! require.ensure | components/list-view/list-view */ "components/list-view/list-view").then((function () {return resolve(__webpack_require__(/*! ../../components/list-view/list-view.vue */ 51));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
+
 
 
 
@@ -227,7 +230,14 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   onLoad: function onLoad() {
 
   },
-  methods: {} };exports.default = _default;
+  methods: {
+    funcName: function funcName(title) {
+      uni.showToast({
+        title: '暂无' + title + '页面',
+        icon: 'none' });
+
+    } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
