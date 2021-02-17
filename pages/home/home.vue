@@ -130,13 +130,16 @@
 		</view>
 	</view>
 	<view class="contentBox">
-		<view class="searchBox">
-			<view class="left">
-				<image src="../../static/home/headBox/search.png" class="searchIcon"></image>
-				<input type="text" placeholder="汉堡王 55减20">
+		<view :class="{'isSearchFixed':isSearchFixed}">
+			<view class="searchBox">
+				<view class="left">
+					<image src="../../static/home/headBox/search.png" class="searchIcon"></image>
+					<input type="text" placeholder="汉堡王 55减20">
+				</view>
+				<view class="search">搜索</view>
 			</view>
-			<view class="search">搜索</view>
 		</view>
+
 		<swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration"
 		 :circular="true">
 			<swiper-item>
@@ -258,8 +261,13 @@
 				isTouch: false,
 				indicatorDots: true,
 				autoplay: true,
-				interval: 2000,
-				duration: 500
+				interval: 3000,
+				duration: 500,
+				// #ifndef MP-WEIXIN
+				// 搜索框到顶部的距离
+				searchTop: '',
+				isSearchFixed: false
+				// #endif
 			}
 		},
 		onLoad() {
@@ -283,9 +291,18 @@
 				// console.log(res.height)
 			})
 			query.exec((res) => {
+				console.log(res)
 				this.menutop = res[0].top;
-				console.log('asdasdas' + this.menutop)
 			})
+			// #ifndef MP-WEIXIN
+			query.select('.searchBox').boundingClientRect((res) => {
+				console.log(res)
+				this.searchTop = res.top;
+			})
+			query.exec((res) => {
+
+			})
+			// #endif
 		},
 
 		methods: {
@@ -362,6 +379,13 @@
 			} else {
 				this.isfixed = false
 			}
+			// #ifndef MP-WEIXIN
+			if (this.rect > this.searchTop) {
+				this.isSearchFixed = true
+			} else {
+				this.isSearchFixed = false
+			}
+			// #endif
 
 			//判断滑动是否已经结束
 			clearTimeout(time)
@@ -404,7 +428,7 @@
 		height: 100rpx;
 		border-radius: 100rpx;
 		position: fixed;
-		bottom: 30rpx;
+		bottom: calc(var(--window-bottom) + 30rpx);
 		right: 16rpx;
 		background-color: white;
 		text-align: center;
@@ -412,10 +436,10 @@
 		box-shadow: 0px 4px 20px 0px rgba(8, 8, 8, 0.1);
 	}
 
+
+
 	// 微信小程序执行的代码
 	/* #ifdef MP-WEIXIN */
-
-
 	.is_fixed {
 		position: fixed;
 		left: 0;
@@ -729,6 +753,24 @@
 
 	// 除微信小程序外执行的代码
 	/* #ifndef MP-WEIXIN */
+	.isSearchFixed {
+		position: fixed;
+		top: 0;
+		z-index: 999;
+
+		width: 100%;
+		background-color: white;
+		padding: 20rpx 0 10rpx 0;
+	}
+
+	.is_fixed {
+		position: fixed;
+		left: 0;
+		top: 100rpx;
+		right: 0;
+		z-index: 999;
+	}
+
 	.headBox {
 		padding-top: 80rpx;
 		width: 100%;
@@ -759,7 +801,6 @@
 	.contentBox {
 		background-color: white;
 		width: 100%;
-		height: 1000rpx;
 		margin-top: -100rpx;
 		border-radius: 38rpx;
 		padding-top: 20rpx;
@@ -771,8 +812,12 @@
 			margin: 20rpx auto;
 			margin-bottom: 0;
 
+
 			.swiper-item {
 				width: 100%;
+
+				border-radius: 20rpx;
+				overflow: hidden;
 			}
 		}
 

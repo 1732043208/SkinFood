@@ -365,8 +365,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
 var _network = _interopRequireDefault(__webpack_require__(/*! ../../static/common/network.json */ 17));
 var _amapWx = _interopRequireDefault(__webpack_require__(/*! ../../common/amap-wx.130.js */ 18));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
+//
+//
+//
 //
 //
 //
@@ -603,16 +609,16 @@ var _default = { data: function data() {return { navImgList: [], navIconList: []
       key: '869978775d6b751ea6cc8f6283cb363c', //用户当前位置
       addressName: '', currentIndex: 0, isGetLocation: false, // 开始与结束标识
       isSlide: false, // 监听手指是否触摸着屏幕没放开
-      isTouch: false, indicatorDots: true, autoplay: true, interval: 2000, duration: 500 };}, onLoad: function onLoad() {// 获取json数据
+      isTouch: false, indicatorDots: true, autoplay: true, interval: 3000, duration: 500 };}, onLoad: function onLoad() {// 获取json数据
     this.getData();this.amapPlugin = new _amapWx.default.AMapWX({ key: this.key }); //获取当前位置(小程序)
     this.getRegeo();}, onReady: function onReady() {var _this = this; // 监听筛选组件距离顶部的距离
     var query = uni.createSelectorQuery();query.select('.suggestBox').boundingClientRect(function (res) {// console.log(res.height)
-    });query.exec(function (res) {_this.menutop = res[0].top;console.log('asdasdas' + _this.menutop);});}, methods: { touchStart: function touchStart() {this.isTouch = true;}, touchEnd: function touchEnd() {this.isTouch = false;this.isSlide = false;}, getRegeo: function getRegeo() {var _this2 = this;uni.showLoading({ title: '获取信息中' });this.amapPlugin.getRegeo({ success: function success(data) {console.log(data);_this2.addressName = data[0].name;_this2.isGetLocation = true;uni.hideLoading();} });}, isLikeFunc: function isLikeFunc(index) {console.log(index);this.isLike = index;}, suggestClick: function suggestClick(index) {this.currentIndex = index;}, getData: function getData() {// json假数据模拟网络请求
+    });query.exec(function (res) {console.log(res);_this.menutop = res[0].top;});}, methods: { touchStart: function touchStart() {this.isTouch = true;}, touchEnd: function touchEnd() {this.isTouch = false;this.isSlide = false;}, getRegeo: function getRegeo() {var _this2 = this;uni.showLoading({ title: '获取信息中' });this.amapPlugin.getRegeo({ success: function success(data) {console.log(data);_this2.addressName = data[0].name;_this2.isGetLocation = true;uni.hideLoading();} });}, isLikeFunc: function isLikeFunc(index) {console.log(index);this.isLike = index;}, suggestClick: function suggestClick(index) {this.currentIndex = index;}, getData: function getData() {// json假数据模拟网络请求
       this.navImgList = _network.default.result.data["0"].navImgList;this.navIconList = _network.default.result.data["0"].navIconList;this.recommendTitles = _network.default.result.data["0"].recommendTitles;this.recommendDetailsList = _network.default.result.data["0"].recommendDetailsList;}, pushCart: function pushCart() {uni.switchTab({ url: '../order/order' });} }, computed: { // 监听顶部搜索框状态变化
     isChangeFunc: function isChangeFunc() {if (this.rect >= 10) {this.isChange = true;} else {this.isChange = false;}} }, onPageScroll: function onPageScroll(e) {var _this3 = this; // console.log(e.scrollTop)
     //获取当前高度与顶部的距离
     this.rect = e.scrollTop; // console.log('我是rect----------' + this.rect)
-    // 75是吸顶盒子的高度
+    console.log(this.rect);console.log(this.searchTop + 'woshi'); // 75是吸顶盒子的高度
     if (this.rect > this.menutop - 75) {this.isfixed = true;} else {this.isfixed = false;} //判断滑动是否已经结束
     clearTimeout(time);this.isSlide = true;var time = setTimeout(function () {console.log('结束滚动');if (!_this3.isTouch) {_this3.isSlide = false;}}, 100);} };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
