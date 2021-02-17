@@ -1,6 +1,6 @@
 <template>
 	<view style="position: relative;" @touchstart="touchStart" @touchend="touchEnd">
-		<view class="cart" :class="{'isCartShow':!isSlide}" v-if="!isSlide"@click="pushCart">
+		<view class="cart" :class="{'isCartShow':!isSlide}" v-if="!isSlide" @click="pushCart">
 			<image src="../../static/home/cart.png" mode="widthFix" style="width: 70%;height: 70%;vertical-align: middle;"></image>
 		</view>
 		<!-- 微信小程序运行代码 -->
@@ -137,6 +137,90 @@
 			</view>
 			<view class="search">搜索</view>
 		</view>
+		<swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration"
+		 :circular="true">
+			<swiper-item>
+				<image src="../../static/home/swiper.png" mode="widthFix" class="swiper-item"></image>
+			</swiper-item>
+			<swiper-item>
+				<image src="../../static/home/swiper.png" mode="widthFix" class="swiper-item"></image>
+			</swiper-item>
+			<swiper-item>
+				<image src="../../static/home/swiper.png" mode="widthFix" class="swiper-item"></image>
+			</swiper-item>
+		</swiper>
+		<view class="navImg">
+			<view class="navImgBox" v-for="item in navImgList" :key="item.id">
+				<image :src="item.src" class="BigIcon"></image>
+				<view>{{item.title}}</view>
+			</view>
+		</view>
+		<view class="navIcon">
+			<view class="navIconBox" v-for="item in navIconList" :key="item.id">
+				<image :src="item.src" class="MiddleIcon"></image>
+				<view>{{item.title}}</view>
+			</view>
+		</view>
+		<view class="recommendBox">
+			<view class="suggestBox" :class="{'is_fixed':isfixed}">
+				<h1 class="title">附近推荐</h1>
+				<view class="recommendTitles">
+					<block v-for="(item,index) in recommendTitles">
+						<view class="recommendItem" @click="suggestClick(index)" :class="{'suggestChange':currentIndex===index}">{{item}}</view>
+					</block>
+				</view>
+			</view>
+			<view class="recommendDetails" :class="{'is_fixedSecond':isfixed}">
+				<view v-for="(item,index) in recommendDetailsList" :key="item.id">
+
+					<view class="shopDetails">
+
+						<view class="left">
+							<image :src="item.src"></image>
+						</view>
+						<view class="right">
+							<view class="rightTitleBox">
+								<h1>{{item.title}}</h1>
+								<image src="../../static/home/recommends/ellipsis-v.png" class="ellipsis"></image>
+							</view>
+							<view class="rightFirstBox">
+								<view class="rightFirstBoxLeft">
+									<text>{{item.score}}分</text>
+									<text>月售{{item.sales}}</text>
+								</view>
+								<view class="rightFirstBoxRight">
+									<text>{{item.time}}分钟</text>
+									<text>{{item.distance}}</text>
+								</view>
+							</view>
+							<view class="rightSecondBox">
+
+								<text>起送￥{{item.Send}}</text>
+								<view v-if="item.ShippingPrice!=='0'">
+									<text>配送￥{{item.ShippingPrice}}</text>
+									<text class="oldPrice">￥{{item.oldShippingPrice}}</text>
+								</view>
+								<view v-if="item.ShippingPrice==='0'">
+									<text>免配送费</text>
+									<text class="oldPrice">￥{{item.oldShippingPrice}}</text>
+								</view>
+							</view>
+							<view class="rightThirdBox" v-if="item.isDetection">
+								<view>
+									<text>已检测体温，请放心食用</text>
+								</view>
+							</view>
+							<view class="rightFourth">
+								<view v-for="value in item.discountList">
+									<view class="cutBox">{{value}}</view>
+								</view>
+							</view>
+						</view>
+					</view>
+
+				</view>
+			</view>
+		</view>
 	</view>
 	<!-- #endif -->
 
@@ -171,14 +255,18 @@
 				// 开始与结束标识
 				isSlide: false,
 				// 监听手指是否触摸着屏幕没放开
-				isTouch: false
+				isTouch: false,
+				indicatorDots: true,
+				autoplay: true,
+				interval: 2000,
+				duration: 500
 			}
 		},
 		onLoad() {
-			// #ifdef MP-WEIXIN
+
 			// 获取json数据
 			this.getData()
-
+			// #ifdef MP-WEIXIN
 			this.amapPlugin = new amap.AMapWX({
 				key: this.key
 			});
@@ -223,12 +311,16 @@
 					}
 				});
 			},
-			suggestClick(index) {
-				this.currentIndex = index
-			},
+
 			isLikeFunc(index) {
 				console.log(index)
 				this.isLike = index
+			},
+
+
+			// #endif
+			suggestClick(index) {
+				this.currentIndex = index
 			},
 			getData() {
 				// json假数据模拟网络请求
@@ -238,13 +330,11 @@
 				this.recommendDetailsList = json.result.data["0"].recommendDetailsList;
 
 			},
-			pushCart(){
+			pushCart() {
 				uni.switchTab({
-				    url: '../order/order'
+					url: '../order/order'
 				});
 			}
-			// #endif
-
 		},
 		computed: {
 			// #ifdef MP-WEIXIN
@@ -673,6 +763,18 @@
 		margin-top: -100rpx;
 		border-radius: 38rpx;
 		padding-top: 20rpx;
+		font-size: 24rpx;
+
+		.swiper {
+			width: 94%;
+			height: 200rpx;
+			margin: 20rpx auto;
+			margin-bottom: 0;
+
+			.swiper-item {
+				width: 100%;
+			}
+		}
 
 		.searchBox {
 			display: flex;
@@ -711,6 +813,178 @@
 				line-height: 58rpx;
 				text-align: center;
 				font-size: 30rpx;
+			}
+		}
+
+		.navImg {
+			display: flex;
+
+			.navImgBox {
+				flex: 1;
+				text-align: center;
+				margin-top: 30rpx;
+
+			}
+		}
+
+		.navIcon {
+			margin-top: 24rpx;
+			display: flex;
+
+			.navIconBox {
+				flex: 1;
+				text-align: center;
+			}
+		}
+
+		.recommendBox {
+			width: 100%;
+			margin-top: 20rpx;
+			background-color: white;
+			border-radius: 30rpx;
+
+			.suggestBox {
+				background-color: white;
+
+				.title {
+					padding-top: 20rpx;
+					margin-left: 24rpx;
+					margin-bottom: 8rpx;
+					font-weight: 700;
+					font-size: 34rpx;
+				}
+
+				.recommendTitles {
+					display: flex;
+					text-align: center;
+					font-size: 24rpx;
+					margin-bottom: 10rpx;
+
+					.recommendItem {
+						flex: 1;
+						border-radius: 16rpx;
+						margin: 10rpx 14rpx;
+						padding: 14rpx 10rpx;
+						background-color: #F3F3F3;
+					}
+
+					.suggestChange {
+						color: #1997DE;
+						background-color: #CCEDFF;
+					}
+				}
+			}
+
+
+			.shopDetails {
+				display: flex;
+				box-sizing: content-box;
+				padding: 10rpx 20rpx;
+
+				.left {
+					margin-right: 20rpx;
+
+					image {
+						width: 160rpx;
+						height: 160rpx;
+					}
+				}
+
+				.right {
+					width: 76%;
+
+					.rightTitleBox {
+						display: flex;
+						justify-content: space-between;
+
+						.ellipsis {
+							margin-top: 10rpx;
+							width: 24rpx;
+							height: 24rpx;
+						}
+					}
+
+
+					.rightFirstBox {
+						display: flex;
+						justify-content: space-between;
+						font-size: 24rpx;
+						margin-top: 8rpx;
+						color: #575757;
+
+						.rightFirstBoxLeft {
+							text:first-child {
+								margin-right: 20rpx;
+								color: #E36515;
+							}
+						}
+
+						.rightFirstBoxRight {
+							text:first-child {
+								margin-right: 20rpx;
+							}
+						}
+					}
+
+					.rightSecondBox {
+						display: flex;
+						font-size: 24rpx;
+						color: #575757;
+						margin-top: 8rpx;
+
+						view {
+
+							text:first-child {
+								margin-left: 20rpx;
+							}
+
+							.oldPrice {
+								color: #B1B1B1;
+								font-size: 22rpx;
+								text-decoration: line-through;
+								margin-left: 4rpx;
+							}
+						}
+
+					}
+
+					.rightThirdBox {
+						margin-top: 6rpx;
+						width: 270rpx;
+						background-color: #FFEEE2;
+						font-size: 22rpx;
+						color: #D1651F;
+						border-radius: 6rpx;
+						text-align: center;
+						padding: 4rpx;
+
+					}
+
+					.rightFourth {
+						height: 26rpx;
+						overflow: hidden;
+						padding-bottom: 40rpx;
+						border-bottom: 1px solid #F6F6F6;
+						display: flex;
+						flex-wrap: wrap;
+
+						font-size: 22rpx;
+						color: #DE6050;
+
+						.cutBox {
+							border-radius: 8rpx;
+							padding: 2rpx 6rpx;
+							margin-right: 10rpx;
+							margin-top: 10rpx;
+							border: 1px solid #F7C7C1;
+						}
+					}
+
+					h1 {
+						font-size: 30rpx;
+						font-weight: 700;
+					}
+				}
 			}
 		}
 	}
